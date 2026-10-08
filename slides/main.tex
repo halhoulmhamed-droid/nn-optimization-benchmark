@@ -1,0 +1,239 @@
+\documentclass[aspectratio=169,12pt]{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{babel}
+\babelprovide[import,main]{french}
+\usepackage{amsmath,amssymb,booktabs,graphicx}
+\usetheme{Boadilla}
+\usecolortheme{default}
+\definecolor{mone}{RGB}{0,114,178}
+\definecolor{mtwo}{RGB}{213,94,0}
+\definecolor{mthree}{RGB}{0,130,100}
+\setbeamercolor{structure}{fg=mone}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}{\hfill\insertframenumber/\inserttotalframenumber\hspace{0.4cm}\vspace{0.2cm}}
+\setbeamertemplate{headline}{}
+\title{Approximation neuronale et optimisation\\d'une décision thermique}
+\subtitle{Valeur, sensibilité et qualité de décision\\sur un benchmark analytique}
+\author{Mhamed Halhoul}
+\institute{\small
+Faculté Polydisciplinaire de Larache\\[2pt]
+M2 en cours --- Master\\
+Modélisation mathématique et applications et apprentissages\\[3pt]
+Module : Algorithmes métaheuristiques\\
+Enseignant du module : Pr. Jamal Daoudi}
+\date{}
+\newcommand{\Mone}{\texttt{M1\_16}}\newcommand{\Mtwo}{\texttt{M2\_16}}
+\newcommand{\Mthree}{\texttt{M1\_32}}
+\newcommand{\chart}[2]{\centering\includegraphics[width=\linewidth,height=#2\textheight,keepaspectratio]{../report/figures/#1.pdf}\par}
+\begin{document}
+\begin{frame}[plain]
+\titlepage
+\end{frame}
+
+\begin{frame}{Apprentissage et décision physique}
+\[
+\theta\in\mathbb R^{49}:\ \min_\theta\mathcal L(\theta),
+\qquad p\in[0.02,0.20]:\ \min_p J_\lambda(p).
+\]
+La convexité physique en $p$ ne rend pas la perte convexe en $\theta$.
+\vspace{0.25cm}
+\begin{itemize}
+\item Association : l'erreur de sensibilité classe-t-elle mieux la mauvaise décision ?
+\item Comparaison : la supervision valeurs et dérivées améliore-t-elle le score moyen, sous quels coûts ?
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Température et référence physique M0}
+\[
+T(p)=\frac{e^{-\pi^2p}}{\sqrt2}+0.2e^{-4\pi^2p},
+\quad J_\lambda(p)=T(p)+\lambda p.
+\]
+Capteur $x=1/4$ de $u_t=u_{xx}$, deux modes, bords homogènes.
+Toutes les variables sont sans dimension.
+\[
+J_\lambda'=T'+\lambda,\quad
+0<m=T''(b)\leq J_\lambda''.
+\]
+M0 : $b$ si $\lambda\leq\lambda_b$, $a$ si $\lambda\geq\lambda_a$,
+sinon dichotomie sur l'unique racine intérieure.
+\[
+\lambda_b=-T'(b)<\lambda_a=-T'(a).
+\]
+Référence flottante et bornes numériques conditionnelles.
+\end{frame}
+
+\begin{frame}{Réseau tanh à 49 paramètres}
+\[
+\theta=(w,b,v,d),\qquad 16+16+16+1=49.
+\]
+\[
+z=\frac{2(p-a)}{b-a}-1,\qquad \alpha_N=\frac{100}{9}.
+\]
+\[
+h_i=\tanh(w_iz+b_i),\qquad
+\widehat T=d+\sum_i v_i h_i.
+\]
+\[
+\widehat T'(p)=\alpha_N\sum_i v_iw_i(1-h_i^2).
+\]
+$c_{\rm out}=0$, $s_{\rm out}=1$. Dérivée par rapport à $p$ physique.
+L'architecture n'impose ni monotonie ni convexité.
+\end{frame}
+
+\begin{frame}{Valeurs seules ou valeurs et dérivées}
+\[
+\mathcal L_1=\frac1n\sum_j\frac{(\widehat T-T)^2}{S_0^2},
+\quad
+\mathcal L_2=\mathcal L_1+\frac1n\sum_j
+                    \frac{(\widehat T'-T')^2}{S_1^2}.
+\]
+\[
+S_0=T(a)-T(b)\simeq0.57295,\qquad
+S_1=-T'(a)\simeq9.31369.
+\]
+M1 apprend les valeurs. M2 ajoute les sensibilités.
+\vspace{0.2cm}
+Coefficient différentiel 1, aucun facteur $1/2$, aucune régularisation.
+Échelles fixes issues de l'oracle, sans estimation sur diagnostic.
+Gradients analytiques des 49 paramètres.
+\end{frame}
+
+\begin{frame}{Protocole apparié et coût des labels}
+\centering
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Sites & $n_T$ & $n_{T'}$ & Coût si $q_1=1$\\
+\midrule
+\Mone &16&16&0&16\\
+\Mtwo &16&16&16&32\\
+\Mthree &32&32&0&32\\
+\bottomrule
+\end{tabular}
+\par\vspace{0.3cm}
+\raggedright
+20 graines, mêmes paramètres initiaux par graine.
+Adam full-batch : 3000 updates, snapshot 300 secondaire.
+\par
+$\eta=0.001$, $\beta_1=0.9$, $\beta_2=0.999$, $\epsilon=10^{-8}$ hors racine.
+Compteur et moments conservés.
+\par
+257 sites diagnostiques disjoints. $q_1=1$ est conventionnel :
+même coût de labels ne signifie pas mêmes sites ou même temps.
+\end{frame}
+
+\begin{frame}{Garanties classiques sous hypothèses}
+\[
+R\leq2\varepsilon+\alpha_{\rm opt}
+\]
+Erreur uniforme $\varepsilon$ et défaut global d'optimisation majorés.
+Une RMSE ne fournit pas $\varepsilon$.
+\[
+|p-p^\star|\leq r/m,\qquad R\leq r^2/(2m).
+\]
+$r$ est le résidu KKT physique, avec les signes adaptés aux frontières.
+\par\vspace{0.2cm}
+Décision neuronale : meilleur des 1025 candidats, sans raffinement.
+Aucune convexité du réseau supposée.
+\par
+Bornes de grille/M0 conditionnelles. Les erreurs flottantes totales
+restent non majorées.
+\end{frame}
+
+\begin{frame}{Illustration : graine 20262001}
+\chart{learned_curves}{0.62}
+\small
+Étape 3000, trois modèles sauvegardés, 257 sites.
+Pour cette graine, M2 réduit les RMSE mais son score décisionnel
+est légèrement plus élevé. Cette illustration n'est pas une moyenne.
+\end{frame}
+
+\begin{frame}{Les vingt paires de scores décisionnels}
+\chart{paired_scores}{0.72}
+\small
+$D=J_{\rm phys}(\widehat p)-J_{\rm phys}(p_{\rm ref})$.
+$S$ est la moyenne des trois $D$ intérieurs, sans clipping.
+Vingt initialisations, toutes conservées.
+\end{frame}
+
+\begin{frame}{Gain moyen de M2 dans les deux contrastes}
+\chart{paired_effects}{0.53}
+\small
+\begin{tabular}{lrr}
+\toprule
+Différence moyenne & Estimation & IC 95\,\%\\
+\midrule
+\Mtwo$-$\Mone & $-0.01006$ & $[-0.01460;-0.00557]$\\
+\Mtwo$-$\Mthree & $-0.00940$ & $[-0.01390;-0.00503]$\\
+\bottomrule
+\end{tabular}
+\par\vspace{0.12cm}
+13 paires favorables sur 20 dans chaque comparaison.
+Gain moyen, sans gain garanti pour toute graine.
+\end{frame}
+
+\begin{frame}{Erreur et mauvaise décision : panel principal}
+\chart{error_decision}{0.70}
+\small
+M1\_16 à 3000, vingt points. Deux associations positives.
+L'IC de $\Delta\rho$ inclut zéro : association supérieure
+des sensibilités inconclusive.
+\end{frame}
+
+\begin{frame}{Bootstrap par blocs de graines}
+\centering
+\begin{tabular}{lrr}
+\toprule
+Statistique & Estimation & IC 95\,\%\\
+\midrule
+$\rho_{\rm valeur}$ &0.9413&$[0.8000;0.9882]$\\
+$\rho_{\rm sens}$ &0.9481&$[0.7925;0.9958]$\\
+$\Delta\rho$ &0.0068&$[-0.0568;0.0791]$\\
+\bottomrule
+\end{tabular}
+\par\vspace{0.35cm}
+\raggedright
+$n=20$, $B=2000$ : une matrice commune, graines tirées avec remise,
+tous les résultats du bloc conservés.
+\par
+Rangs moyens pour égalités exactes. Variable constante : non défini.
+IC percentile interpolé, au moins 90\,\% de tirages définis.
+\par
+Autres conditions, étape 300 et frontières : secondaires.
+Pas de pooling ou de garantie simultanée des IC.
+\end{frame}
+
+\begin{frame}{Conclusions et limites}
+\begin{itemize}
+\item M2 améliore le score décisionnel moyen dans les deux comparaisons prévues, dans ce benchmark.
+\item L'hypothèse d'une association supérieure des sensibilités reste inconclusive.
+\item Un seul cas scalaire sans bruit, vingt initialisations, référence flottante. Protocole après inspection du pilote.
+\end{itemize}
+\vspace{0.2cm}
+Aucune nouveauté d'algorithme, causalité ou supériorité générale établie.
+\par
+Une extension future : transfert à un second cas physique,
+avec coût des valeurs et dérivées explicitement mesuré.
+Elle reste non exécutée.
+\end{frame}
+
+\begin{frame}{Sources et archives}
+\small
+\begin{itemize}
+\item Czarnecki et al., \emph{Sobolev Training for Neural Networks},
+NIPS 2017.
+\item Yao et al., \emph{Derivative-Informed Fourier Neural Operator:
+Universal Approximation and Applications to PDE-Constrained Optimization},
+arXiv:2512.14086, 2025, révision 2026. Prépublication.
+\item Alexandrov et al., \emph{A trust-region framework for managing
+the use of approximation models in optimization}, 1998.
+\item Elmachtoub et Grigas, \emph{Smart Predict, then Optimize},
+Management Science, 2022.
+\end{itemize}
+Lecture bibliographique partielle ; références complètes dans le rapport.
+\par
+Archives : résultats 3B/3C, paramètres, contextes et exports CSV.
+Aucun nouvel entraînement pour cette présentation.
+\end{frame}
+\end{document}

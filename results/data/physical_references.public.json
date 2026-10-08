@@ -1,0 +1,428 @@
+{
+  "S0": 0.5729505106050928,
+  "S1": 9.313693283147819,
+  "export_kind": "saved_physical_reference_projection",
+  "physical_model": {
+    "domain": [
+      0.02,
+      0.2
+    ],
+    "formula": "exp(-pi^2*p)/sqrt(2)+0.2*exp(-4*pi^2*p)",
+    "lambda_a_float": 9.313693283147819,
+    "lambda_b_float": 0.9723818705098497,
+    "lambda_domain": [
+      0.48619093525492485,
+      13.970539924721727
+    ],
+    "threshold_status": "float evaluations of exact physical thresholds; not certified",
+    "units": "dimensionless"
+  },
+  "references": {
+    "A_three_halves": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.02,
+        0.02
+      ],
+      "bracket_gradients": [
+        4.6568466415739085,
+        4.6568466415739085
+      ],
+      "branch": "lower_boundary",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 2,
+            "requested": 3,
+            "reused": 1,
+            "unique": 2
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 3,
+          "requested": 4,
+          "reused": 1,
+          "unique": 3
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 0.0,
+      "gradient_at_reference": 4.6568466415739085,
+      "iterations": 0,
+      "j_ref": 0.9506607827883156,
+      "kkt_residual": 0.0,
+      "lambda_value": 13.970539924721727,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.02,
+      "reference_value_error_estimate_conditional": 0.0,
+      "rounded_midpoint_radius_estimate": 0.0,
+      "stopping_reason": "lower_boundary_sign",
+      "task": "A_three_halves",
+      "width": 0.0,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    },
+    "A_transition": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.02,
+        0.02
+      ],
+      "bracket_gradients": [
+        0.0,
+        0.0
+      ],
+      "branch": "lower_boundary",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 2,
+            "requested": 3,
+            "reused": 1,
+            "unique": 2
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 3,
+          "requested": 4,
+          "reused": 1,
+          "unique": 3
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 0.0,
+      "gradient_at_reference": 0.0,
+      "iterations": 0,
+      "j_ref": 0.8575238499568374,
+      "kkt_residual": 0.0,
+      "lambda_value": 9.313693283147819,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.02,
+      "reference_value_error_estimate_conditional": 0.0,
+      "rounded_midpoint_radius_estimate": 0.0,
+      "stopping_reason": "lower_boundary_sign",
+      "task": "A_transition",
+      "width": 0.0,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    },
+    "B_half": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.2,
+        0.2
+      ],
+      "bracket_gradients": [
+        -0.48619093525492485,
+        -0.48619093525492485
+      ],
+      "branch": "upper_boundary",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 2,
+            "requested": 3,
+            "reused": 1,
+            "unique": 2
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 3,
+          "requested": 4,
+          "reused": 1,
+          "unique": 3
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 0.0,
+      "gradient_at_reference": -0.48619093525492485,
+      "iterations": 0,
+      "j_ref": 0.19553766073977313,
+      "kkt_residual": 0.0,
+      "lambda_value": 0.48619093525492485,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.2,
+      "reference_value_error_estimate_conditional": 0.0,
+      "rounded_midpoint_radius_estimate": 0.0,
+      "stopping_reason": "upper_boundary_sign",
+      "task": "B_half",
+      "width": 0.0,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    },
+    "B_transition": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.2,
+        0.2
+      ],
+      "bracket_gradients": [
+        0.0,
+        0.0
+      ],
+      "branch": "upper_boundary",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 2,
+            "requested": 3,
+            "reused": 1,
+            "unique": 2
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 3,
+          "requested": 4,
+          "reused": 1,
+          "unique": 3
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 0.0,
+      "gradient_at_reference": 0.0,
+      "iterations": 0,
+      "j_ref": 0.2927758477907581,
+      "kkt_residual": 0.0,
+      "lambda_value": 0.9723818705098497,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.2,
+      "reference_value_error_estimate_conditional": 0.0,
+      "rounded_midpoint_radius_estimate": 0.0,
+      "stopping_reason": "upper_boundary_sign",
+      "task": "B_transition",
+      "width": 0.0,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    },
+    "interior_half": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.05259262094274162,
+        0.05259262102656065
+      ],
+      "bracket_gradients": [
+        -3.740217913161814e-09,
+        2.971607848678559e-09
+      ],
+      "branch": "interior",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 34,
+            "requested": 34,
+            "reused": 0,
+            "unique": 34
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 35,
+          "requested": 35,
+          "reused": 0,
+          "unique": 35
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 4.190951405358412e-11,
+      "gradient_at_reference": -3.843059204200472e-10,
+      "iterations": 31,
+      "j_ref": 0.7163464974857452,
+      "kkt_residual": 3.843059204200472e-10,
+      "lambda_value": 5.143037576828834,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.05259262098465113,
+      "reference_value_error_estimate_conditional": 1.7394489966658385e-19,
+      "rounded_midpoint_radius_estimate": 4.190951752303107e-11,
+      "stopping_reason": "width_tolerance",
+      "task": "interior_half",
+      "width": 8.381902810716824e-11,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    },
+    "interior_quarter": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.0910639040917158,
+        0.09106390417553484
+      ],
+      "bracket_gradients": [
+        -1.5127810115700413e-09,
+        1.5548127230147202e-09
+      ],
+      "branch": "interior",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 34,
+            "requested": 34,
+            "reused": 0,
+            "unique": 34
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 35,
+          "requested": 35,
+          "reused": 0,
+          "unique": 35
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 4.190951752303107e-11,
+      "gradient_at_reference": 2.1015633677734513e-11,
+      "iterations": 31,
+      "j_ref": 0.5717823130524995,
+      "kkt_residual": 2.1015633677734513e-11,
+      "lambda_value": 3.0577097236693422,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.09106390413362532,
+      "reference_value_error_estimate_conditional": 1.7394489966658385e-19,
+      "rounded_midpoint_radius_estimate": 4.190951752303107e-11,
+      "stopping_reason": "width_tolerance",
+      "task": "interior_quarter",
+      "width": 8.381903504606214e-11,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    },
+    "interior_three_quarters": {
+      "bound_condition": "correct exact-model branch/signs, enclosing bracket, valid curvature; floating arithmetic and libm errors are not rigorously bounded",
+      "bracket": [
+        0.03267702245153488,
+        0.03267702253535391
+      ],
+      "bracket_gradients": [
+        -7.98115529221377e-09,
+        3.3924170139698617e-09
+      ],
+      "branch": "interior",
+      "evaluations": {
+        "by_kind": {
+          "curvature": {
+            "executed": 0,
+            "requested": 0,
+            "reused": 0,
+            "unique": 0
+          },
+          "derivative": {
+            "executed": 34,
+            "requested": 34,
+            "reused": 0,
+            "unique": 34
+          },
+          "value": {
+            "executed": 1,
+            "requested": 1,
+            "reused": 0,
+            "unique": 1
+          }
+        },
+        "scope": "one M0 solve; unique keys=(kind,p); no inter-solve cache",
+        "shared_preparation_included": false,
+        "total": {
+          "executed": 35,
+          "requested": 35,
+          "reused": 0,
+          "unique": 35
+        }
+      },
+      "exact_midpoint_distance_bound_conditional": 4.190951405358412e-11,
+      "gradient_at_reference": -2.294368250943535e-09,
+      "iterations": 31,
+      "j_ref": 0.8034316653216095,
+      "kkt_residual": 2.294368250943535e-09,
+      "lambda_value": 7.228365429988326,
+      "max_iterations": 80,
+      "numerical_status": "FLOATING_REFERENCE_NOT_CERTIFIED",
+      "p_ref": 0.032677022493444396,
+      "reference_value_error_estimate_conditional": 1.7394489966658385e-19,
+      "rounded_midpoint_radius_estimate": 4.190951752303107e-11,
+      "stopping_reason": "width_tolerance",
+      "task": "interior_three_quarters",
+      "width": 8.381902810716824e-11,
+      "width_tolerance": 1e-10,
+      "width_tolerance_met": true
+    }
+  }
+}

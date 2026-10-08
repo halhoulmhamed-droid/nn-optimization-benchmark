@@ -1,0 +1,112 @@
+{
+  "decisions_rows": 840,
+  "decisions_valid": 840,
+  "descriptive_3000": [
+    {
+      "condition": "M1_16",
+      "mean_D_interior": 0.013451842482843429,
+      "mean_rmse_derivative": 1.0293863110080235,
+      "mean_rmse_value": 0.011239077631559305,
+      "missing": 0,
+      "valid": 20
+    },
+    {
+      "condition": "M2_16",
+      "mean_D_interior": 0.0033886288001042765,
+      "mean_rmse_derivative": 0.4425779730754802,
+      "mean_rmse_value": 0.0061375330160838085,
+      "missing": 0,
+      "valid": 20
+    },
+    {
+      "condition": "M1_32",
+      "mean_D_interior": 0.012787703791457558,
+      "mean_rmse_derivative": 1.0151060453934093,
+      "mean_rmse_value": 0.01101713191196066,
+      "missing": 0,
+      "valid": 20
+    }
+  ],
+  "executed_loss_gradient_counts": {
+    "known_recomputed_loss_gradient_calls": 0,
+    "logging_attempts": 180,
+    "logging_completed": 180,
+    "update_attempts": 180000,
+    "update_completed": 180000
+  },
+  "executed_updates_exact_if_no_uncertain_window": 180000,
+  "execution_uncertainty_windows": [],
+  "export_kind": "saved_campaign_scientific_summary_projection",
+  "failures": [],
+  "incidents": [],
+  "jobs_completed": 60,
+  "jobs_processed": 60,
+  "logical_updates": 180000,
+  "metrics_rows": 120,
+  "metrics_valid": 120,
+  "network_counts": {
+    "boundary_joint_network_evaluations": 240,
+    "decision_input_derivative_evaluations": 840,
+    "diagnostic_joint_network_evaluations": 30840,
+    "discrete_objective_evaluations": 861000,
+    "grid_forward_network_evaluations": 123000,
+    "logging_activation_only_sites": 3840,
+    "physical_requests_derivative": 840,
+    "physical_requests_value": 840,
+    "saturation_activation_only_sites": 30840,
+    "training_sensitivity_and_mixed_gradient_sites_from_code": 960960,
+    "training_value_and_parameter_gradient_sites_from_code": 3843840
+  },
+  "physical_cache": {
+    "by_quantity": {
+      "T": {
+        "archived_added": 33,
+        "archived_unique_used": 21,
+        "callback_attempts": 387,
+        "hits": 776,
+        "new_calls": 387,
+        "requests": 1163,
+        "unique_entries": 420,
+        "unique_requested_sites": 408
+      },
+      "T_prime": {
+        "archived_added": 33,
+        "archived_unique_used": 21,
+        "callback_attempts": 358,
+        "hits": 757,
+        "new_calls": 358,
+        "requests": 1115,
+        "unique_entries": 391,
+        "unique_requested_sites": 379
+      }
+    },
+    "exact_site_key": "quantity:p.hex(); no approximate merging",
+    "role_unique_requests": {
+      "boundaries": 4,
+      "decisions": 214,
+      "diagnostics": 514,
+      "training": 64
+    }
+  },
+  "reference_accounting": {
+    "archived_references_reused": 7,
+    "legacy_solve_cost_not_current_cost": true,
+    "new_M0_calls": 0
+  },
+  "scientific_limits": [
+    "exploratory after pilot; seed is replication unit",
+    "raw D against floating M0, not certified exact regret",
+    "no Spearman, paired inference, bootstrap or hypothesis conclusion",
+    "timings are this invocation/PC, not a universal speed ranking"
+  ],
+  "snapshots_available": 120,
+  "status": "CAMPAIGN_COMPLETED",
+  "timings_observed_seconds": {
+    "acquisition": 0.10344530001748353,
+    "logging": 0.7875147998565808,
+    "metrics": 13.455561400041915,
+    "persistence": 43.14537609938998,
+    "total_this_invocation": 566.6859376999782,
+    "training": 477.96474709990434
+  }
+}

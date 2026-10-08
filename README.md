@@ -1,0 +1,75 @@
+# Neural approximation and optimization of a thermal decision
+
+**Mhamed Halhoul**  
+Faculté Polydisciplinaire de Larache  
+M2 — *Modélisation mathématique et applications et apprentissages*  
+Master's degree in progress.  
+Module : Algorithmes métaheuristiques  
+Enseignant du module : Pr. Jamal Daoudi
+
+This mini-project connects neural approximation, input sensitivities and physical decision quality on a fixed, dimensionless thermal benchmark. The saved numerical study is complete.
+
+**PDF status.** The corrected report (16 pages) and presentation (14 slides) display the full academic identity above. They have been rebuilt and visually reviewed in a separate TeX Live environment. The four vector figures are unchanged. All six current PDFs have undergone extracted-text, metadata and accessible decoded-content review. The Windows compiler restriction remains unresolved; this documentary reconstruction does not establish that the local Windows build works.
+
+## Results
+
+The campaign used 20 paired initializations, three supervision conditions and 3000 Adam updates per trajectory. The mean score differences favor M2 in both planned comparisons:
+
+| Paired contrast at 3000 | Mean score difference | 95% percentile bootstrap interval | Negative / zero / positive pairs |
+|---|---:|---:|---:|
+| M2_16 − M1_16 | −0.01006 | [−0.01460, −0.00557] | 13 / 0 / 7 |
+| M2_16 − M1_32 | −0.00940 | [−0.01390, −0.00503] | 13 / 0 / 7 |
+
+The primary sensitivity-association hypothesis remains **inconclusive**. In M1_16 at 3000, signed Spearman correlations are 0.9413 for value error and 0.9481 for sensitivity error. Their difference is 0.0068, with a 95% bootstrap interval of [−0.0568, 0.0791]. A method contrast and a correlation contrast answer different questions.
+
+The score S is the mean of three raw physical cost differences against a floating reference. It is not certified exact regret. Results concern 20 initializations of one benchmark. They establish no general superiority, causal derivative effect or new algorithm.
+
+## Saved scientific material
+
+- [French report PDF](report/main.pdf) and [LaTeX source](report/main.tex), with the [explicit bibliography](report/references.tex). The current 16-page PDF displays the corrected academic identity.
+- [French 16:9 presentation PDF](slides/main.pdf) and [Beamer source](slides/main.tex). The current 14-slide PDF displays the corrected academic identity.
+- Vector figures: [learned curves](report/figures/learned_curves.pdf), [error and decision](report/figures/error_decision.pdf), [paired scores](report/figures/paired_scores.pdf), [paired effects](report/figures/paired_effects.pdf). Editable figure sources are in `report/figures/`.
+- Sealed presentation data: [learned curves](report/data/learned_curves.csv), [primary panel](report/data/primary_panel.csv), [paired scores](report/data/paired_scores.csv), [paired effects](report/data/paired_effects.csv).
+- Saved numerical evidence: [per-seed statistics](results/analysis/phase3c_seed_statistics.csv), [bootstrap samples](results/analysis/phase3c_bootstrap_samples.csv), [campaign metrics](results/replication/phase3b_metrics.csv) and [decisions](results/replication/phase3b_decisions.csv). No statistics are recomputed for this revision.
+- Analytic primitives: [thermal oracle](src/thermal_oracle.py), [physical reference](src/physical_reference.py), [scalar network](src/neural_surrogate.py), [parameter gradients](src/neural_gradients.py) and [losses](src/surrogate_losses.py). Mathematical assumptions and proofs are in the report.
+- [Portfolio entry draft](docs/presentation/portfolio_entry_draft.md).
+
+## Benchmark and methods
+
+`T(p) = exp(-π²p)/√2 + 0.2 exp(-4π²p)`, with p in [0.02, 0.20]. The decision objective is `Jλ(p) = T(p) + λp`.
+
+The scalar tanh network has architecture 1–16–1 and 49 parameters ordered w, b, v, d. Its input is affine-normalized; its output is the dimensionless temperature. M1 minimizes mean squared value error divided by S0². M2 adds mean squared physical-derivative error divided by S1², with coefficient 1 and no half factor. S0 and S1 are fixed analytic scales.
+
+M1_16 uses 16 value labels. M2_16 uses those values and 16 derivative labels at the same sites. M1_32 uses 32 value labels at different sites. Their conventional label costs are 16, 32 and 32 only under q1=1. Equal label cost does not imply equal sites, neural operations or runtime.
+
+Diagnostics use 257 held-out sites. Decisions use the saved seven tasks and a 1025-candidate grid. The bootstrap uses 2000 coupled resamples of seed blocks. The protocol was fixed before this replication, after inspection of the pilot.
+
+## Reproducibility and publication scope
+
+The numerical implementation uses standalone CPython 3.11.9 and the standard library. Mathematical primitives, derivatives, optimizer continuation, integration and statistics were verified in separate phases. The publication-specific validation passed all 161 tests across the ten historical modules under CPython 3.11.9 with -I -S -B, with zero errors, failures or skips. These tests execute analytic checks and deterministic or synthetic fixtures; they do not establish a complete campaign reproduction or multi-platform numerical reproduction.
+
+The report appendix describes the mathematical assumptions and saved-data workflow. Documentary reconstruction reads the four sealed CSVs: build the four standalone figure sources first, then the report and Beamer sources. It requires an existing compatible TeX environment and a review of the resulting PDFs; it does not require training or new physical labels.
+
+The mean method contrasts favor M2 within this benchmark. The stronger sensitivity-association hypothesis remains inconclusive. Uniform-error and regret bounds require their mathematical hypotheses; discrete diagnostics and floating references do not provide a rigorous numerical certificate.
+
+This repository supplies a reproduction recipe and explicitly identified scientific exports. The six PDFs were reviewed through extracted page text, metadata, bookmarks, annotations and accessible decoded streams. The complete publication test report passed the data/source/report gate for the current code and recipe hashes. End-to-end campaign reproduction remains unverified.
+
+One future extension is proposed: transfer this diagnostic protocol to another physical case with explicitly measured value/derivative acquisition costs. It has not been executed.
+
+## Inspect and reproduce
+
+Start by reading the saved report and results. The first command is an administrative read-only check:
+
+```sh
+python -I -S -B scripts/export_presentation_material.py --check
+```
+
+See [the reproduction guide](docs/reproducibility.md) for saved-data inspection, an optional document build, and explicit future campaign/analysis commands in new reproduction directories. Numerical runtime: CPython 3.11.9, standard library only. Test reports remain in ignored reproduction outputs. The TeX environment is a separate documentary dependency. Publication validation ran no research campaign, saved-result bootstrap or document build.
+
+Scientific field projections are [statistical results](results/analysis/phase3c_analysis.public.json), [campaign summary](results/replication/summary.public.json), [saved model states](results/models/campaign_models.public.json), [physical labels](results/data/physical_labels.public.json) and [physical references](results/data/physical_references.public.json). They preserve selected saved values and are distinct from the private historical archives. The [data dictionary](docs/data_dictionary.md) describes their scope. See the [frozen public recipe](configs/replication_plan.json).
+
+Repository: [halhoulmhamed-droid/nn-optimization-benchmark](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark).
+
+## License
+
+Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Mhamed Halhoul.

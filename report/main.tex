@@ -1,0 +1,748 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{babel}
+\babelprovide[import,main]{french}
+\usepackage[a4paper,margin=2.1cm]{geometry}
+\usepackage{amsmath,amssymb,mathtools,graphicx,booktabs,array,xcolor}
+\usepackage{microtype,hyperref,fancyhdr}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black,
+pdftitle={Approximation neuronale et optimisation d'une décision thermique},pdfauthor={Mhamed Halhoul}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Approximation neuronale et décision thermique}
+\fancyhead[R]{\small Mhamed Halhoul}\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}\setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
+\renewcommand{\arraystretch}{1.15}
+\newcommand{\Mone}{\texttt{M1\_16}}\newcommand{\Mtwo}{\texttt{M2\_16}}
+\newcommand{\Mthree}{\texttt{M1\_32}}\newcommand{\That}{\widehat T_\theta}
+\newcommand{\Jhat}{\widehat J_{\lambda,\theta}}
+\newcommand{\fig}[3]{\begin{figure}[ht]\centering
+\includegraphics[width=#2\linewidth]{figures/#1.pdf}
+\caption{#3}\label{fig:#1}\end{figure}}
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+\vspace*{0.5cm}
+{\LARGE\bfseries Approximation neuronale et optimisation\\[5pt]d'une décision thermique\par}
+\vspace{0.4cm}
+{\large Valeur, sensibilité et qualité de décision\\sur un benchmark analytique\par}
+\vspace{0.6cm}
+{\large Mhamed Halhoul\par}
+\vspace{0.3cm}
+{\small Faculté Polydisciplinaire de Larache\\[3pt]
+M2 en cours --- Master\\
+\emph{Modélisation mathématique et applications et apprentissages}\\[4pt]
+Module : Algorithmes métaheuristiques\\
+Enseignant du module : Pr. Jamal Daoudi}\\[3pt]
+Mini-projet : réseaux de neurones pour l'apprentissage et l'optimisation
+\end{center}
+\subsection*{Résumé}
+Un réseau précis en prédiction conduit-il à une bonne décision physique ?
+Nous étudions un choix scalaire de durée de refroidissement, avec un oracle
+thermique analytique fixé. Un réseau tanh $1$--$16$--$1$ approxime une température.
+M1 apprend les valeurs ; M2 apprend valeurs et dérivées physiques, avec des
+échelles fixes. La réplication comporte vingt initialisations appariées,
+trois conditions et 3000 mises à jour Adam par trajectoire.
+
+Le score décisionnel est la moyenne de trois différences de coût contre une
+référence flottante, sans écrêtage. Les deux contrastes moyens appariés sont
+favorables à M2 à 3000, avec des intervalles bootstrap entièrement négatifs.
+Treize paires sur vingt sont favorables dans chaque comparaison.
+Dans le panel principal M1 à 16 valeurs, les deux corrélations de rang sont
+positives, mais l'IC de leur différence inclut zéro : l'hypothèse d'une
+association supérieure des sensibilités reste inconclusive.
+
+Cette étude applique des méthodes et bornes classiques. Elle ne démontre
+ni nouveauté d'algorithme, ni supériorité générale, ni regret numériquement
+certifié. Sa portée est un seul problème scalaire sans bruit, un réseau
+et un budget fixés.
+
+\subsection*{Abstract}
+We study the association of prediction and input-sensitivity errors with
+physical decision quality. A fixed scalar thermal benchmark is approximated
+by a 49-parameter tanh network. Twenty paired initializations compare value-only
+and value-plus-derivative supervision, including a baseline with twice as many
+value labels. Mean paired decision-score differences favor derivative supervision
+in this benchmark. However, the bootstrap interval for the difference between
+the two primary Spearman correlations includes zero. The sensitivity-association
+hypothesis remains inconclusive. Floating references and grid-error estimates
+are conditional. No general superiority or algorithmic novelty is established.
+
+\clearpage
+\section{Question et portée}
+\label{sec:question}
+Les paramètres du réseau sont $\theta\in\mathbb R^{49}$. L'apprentissage
+minimise une perte $\mathcal L(\theta)$ généralement non convexe.
+Après apprentissage, la décision est une durée $p\in P=[a,b]$ pour un contexte
+$\lambda$ connu :
+\[
+p^\star_\lambda=\arg\min_P J_\lambda(p),\qquad
+\widehat p_{\lambda,\theta}\ \text{est choisi à partir de }\Jhat(p).
+\]
+La forte convexité physique en $p$ ne rend ni la perte convexe en $\theta$,
+ni l'objectif neuronal automatiquement convexe en $p$.
+
+Deux questions expérimentales sont séparées. La première compare l'association
+de l'erreur de valeur avec la mauvaise décision à celle de l'erreur de
+sensibilité. La seconde compare les stratégies de supervision, sous deux
+budgets de labels distincts. Un gain moyen de M2 peut coexister avec une
+différence de corrélations inconclusive.
+
+Le regret exact est
+\[
+R_\lambda=J_\lambda(\widehat p)-J_\lambda(p^\star_\lambda)\geq0.
+\]
+Les archives utilisent une référence calculée $p_{\rm ref}$ et sauvegardent
+\[
+D_\lambda=J_\lambda(\widehat p)-J_\lambda(p_{\rm ref}),\qquad
+S=\frac13\sum_{k\in\mathcal I}D_{\lambda_k},
+\]
+où $\mathcal I$ contient les trois tâches strictement intérieures fixées.
+$D$ et $S$ sont des différences brutes contre une référence flottante :
+ils ne sont pas le regret exact certifié. Leur signe est conservé.
+
+La supervision de dérivées est établie, notamment dans \emph{Sobolev Training}
+\cite{sobolev}. Des opérateurs informés par dérivées ont aussi des applications
+à l'optimisation sous EDP \cite{dino}. L'apprentissage orienté vers une décision
+\cite{spo} et la gestion d'approximations en optimisation \cite{trust} sont des
+repères complémentaires. Notre réseau scalaire n'hérite pas automatiquement
+des garanties ou performances de ces travaux.
+
+L'apport réalisé est une étude expérimentale contrôlée : preuves spécialisées,
+gradients analytiques, comptabilité des labels et résultats traçables.
+Il n'est pas présenté comme une nouvelle méthode scientifique.
+
+\clearpage
+\section{Modèle thermique et référence M0}
+\label{sec:physique}
+Toutes les variables sont \textbf{sans dimension}. Une interprétation en
+secondes, kelvins ou coût monétaire exigerait des échelles absentes.
+La diffusivité vaut 1. Sur $0<x<1$,
+\[
+u(x,t)=e^{-\pi^2t}\sin(\pi x)+\frac15e^{-4\pi^2t}\sin(2\pi x)
+\]
+satisfait $u_t=u_{xx}$, les bords homogènes $u(0,t)=u(1,t)=0$ et
+$u(x,0)=\sin(\pi x)+\frac15\sin(2\pi x)$.
+Chaque dérivée temporelle et spatiale seconde multiplie le mode $k$ par
+$-(k\pi)^2$. Le signe du second mode est conservé.
+
+Au capteur $x=1/4$, pour $p\in[a,b]$, $a=0.02$, $b=0.20$ :
+\[
+T(p)=\frac{e^{-\pi^2p}}{\sqrt2}+\frac15e^{-4\pi^2p}.
+\]
+\begin{align*}
+T'(p)&=-\frac{\pi^2}{\sqrt2}e^{-\pi^2p}
+       -\frac{4\pi^2}{5}e^{-4\pi^2p},\\
+T''(p)&=\frac{\pi^4}{\sqrt2}e^{-\pi^2p}
+       +\frac{(4\pi^2)^2}{5}e^{-4\pi^2p}.
+\end{align*}
+On a $T'<0$, $T''>0$, $T'''<0$. Pour $J_\lambda=T+\lambda p$ :
+\[
+J_\lambda'=T'+\lambda,\quad J_\lambda''=T'',\quad
+0<m=T''(b)\leq T''(p)\leq L_{\rm phys}=T''(a).
+\]
+Continuité sur le compact et forte convexité globale donnent existence et
+unicité du minimiseur physique. La formule exacte démontre $m>0$,
+indépendamment de $\lambda$, sans balayage de grille.
+Les valeurs archivées $m\simeq9.68407$, $L_{\rm phys}\simeq198.06894$
+sont des évaluations flottantes.
+
+Posons $\lambda_b=-T'(b)$, $\lambda_a=-T'(a)$, avec $0<\lambda_b<\lambda_a$.
+M0 applique
+\[
+p^\star_\lambda=
+\begin{cases}
+b,&\lambda\leq\lambda_b,\\
+\text{unique racine de }T'(p)+\lambda=0,&\lambda_b<\lambda<\lambda_a,\\
+a,&\lambda\geq\lambda_a.
+\end{cases}
+\]
+Les égalités appartiennent aux frontières. À l'intérieur, une dichotomie
+conserve un bracket et retourne son milieu. La plage est
+$\Lambda=[\lambda_b/2,3\lambda_a/2]$.
+
+Les références archivées utilisent une tolérance de largeur $10^{-10}$
+et au plus 80 itérations. Un zéro flottant du gradient n'est pas assimilé
+à une racine exacte. Les trois brackets intérieurs donnent une estimation
+conditionnelle d'erreur de valeur d'environ $1.73945\,10^{-19}$ ;
+ce nombre ne borne pas l'erreur flottante totale.
+
+\clearpage
+\section{Réseau et dérivée physique}
+\label{sec:reseau}
+Le réseau possède 16 neurones cachés tanh et une sortie linéaire :
+\[
+\theta=(w_0,\ldots,w_{15},\,b_0,\ldots,b_{15},\,
+v_0,\ldots,v_{15},\,d).
+\]
+Il contient $16+16+16+1=49$ paramètres. Les normalisations fixes ne sont
+pas entraînables.
+\[
+z=N(p)=\frac{2(p-a)}{b-a}-1=\alpha_Np+\beta_N,\quad
+\alpha_N=\frac{100}{9},\quad\beta_N=-\frac{11}{9}.
+\]
+Le code conservé évalue $\alpha_Np+\beta_N$ en flottants, sans réajuster
+les constantes ou les frontières. Pour $u_i=w_iz+b_i$, $h_i=\tanh(u_i)$,
+$q_i=1-h_i^2$ :
+\[
+y_\theta(z)=d+\sum_i v_ih_i,\qquad
+\That(p)=c_{\rm out}+s_{\rm out}y_\theta(N(p)).
+\]
+Les conventions sont $c_{\rm out}=0$, $s_{\rm out}=1$.
+La sortie approxime directement la température sans dimension ; elle
+n'est pas divisée par l'échelle de perte $S_0$.
+
+La règle de chaîne donne
+\[
+\frac{dy_\theta}{dz}=\sum_i v_iw_iq_i,\qquad
+\That'(p)=s_{\rm out}\alpha_N\sum_i v_iw_iq_i.
+\]
+Le facteur $\alpha_N$ transforme la dérivée en entrée normalisée en
+dérivée par rapport à la durée physique. Le décalage $c_{\rm out}$ n'a
+pas de dérivée. L'évaluation conjointe partage les seize activations.
+
+Pour des paramètres finis, le réseau et son objectif sont continus sur $P$ :
+un minimum global existe. L'architecture n'impose ni positivité,
+ni monotonie, ni convexité. Une stationnarité neuronale ne démontre
+pas une optimalité globale ou une bonne décision physique.
+
+En saturation, la fonction \texttt{tanh} peut s'arrondir à $+1$ ou $-1$.
+Alors $1-h_i^2$ peut valoir zéro en flottants, bien que
+$\operatorname{sech}^2(u_i)>0$ pour tout $u_i$ réel fini.
+Cette limite est conservée et aucun écrêtage correctif n'est ajouté.
+
+\clearpage
+\section{Pertes M1/M2 et Adam}
+\label{sec:pertes}
+Les échelles fixes privilégiées sont $S_0=T(a)-T(b)>0$ et $S_1=-T'(a)>0$ :
+\[
+S_0=0.5729505106050928,\qquad S_1=9.313693283147819.
+\]
+Elles proviennent des constantes archivées de l'oracle vérifié en 1B,
+pas d'un ajustement sur les diagnostics.
+Sur les mêmes $n$ sites pour les deux composantes de M2 :
+\begin{align*}
+\mathcal L_1&=\frac1{nS_0^2}\sum_j(\That(p_j)-T(p_j))^2,\\
+\mathcal L_2&=\mathcal L_1+\frac1{nS_1^2}\sum_j(\That'(p_j)-T'(p_j))^2.
+\end{align*}
+M1 supervise les valeurs ; M2 ajoute les dérivées physiques.
+Il n'y a ni facteur $1/2$, ni poids variable par point, ni régularisation.
+Le coefficient de sensibilité est 1. Le $\lambda$ physique n'est pas
+un coefficient de perte.
+
+Avec $e_j=\That-T$ et $r_j=\That'-T'$ :
+\[
+\nabla_\theta\mathcal L_2=
+\frac2{nS_0^2}\sum_j e_j\nabla_\theta\That(p_j)
++\frac2{nS_1^2}\sum_j r_j\nabla_\theta\That'(p_j).
+\]
+M1 conserve le premier terme. Les gradients des 49 paramètres sont
+analytiques ; les expressions mixtes figurent en annexe.
+La perte reçoit les labels et n'interroge pas l'oracle dans sa boucle.
+
+Adam emploie $\eta=0.001$, $\beta_1=0.9$, $\beta_2=0.999$,
+$\epsilon_A=10^{-8}$. Avec premiers moments $m_t$ et seconds moments $\nu_t$ :
+\begin{align*}
+m_t&=\beta_1m_{t-1}+(1-\beta_1)\nabla\mathcal L(\theta_{t-1}),\\
+\nu_t&=\beta_2\nu_{t-1}+(1-\beta_2)\nabla\mathcal L(\theta_{t-1})^2,\\
+\theta_t&=\theta_{t-1}
+-\eta\,\frac{m_t/(1-\beta_1^t)}
+{\sqrt{\nu_t/(1-\beta_2^t)}+\epsilon_A}.
+\end{align*}
+Les opérations sont composante par composante. $\epsilon_A$ est hors de
+la racine et le compteur est global. L'état à 300 continue jusqu'à 3000
+sans réinitialiser paramètres ou moments. Aucun instantané n'est choisi
+sur validation et aucune convergence globale en $\theta$ n'est promise.
+
+\clearpage
+\section{Bornes classiques et hypothèses}
+\label{sec:bornes}
+Supposons $\sup_P|\Jhat-J_\lambda|\leq\varepsilon$ et
+$\Jhat(\widehat p)\leq\inf_P\Jhat+\alpha_{\rm opt}$,
+avec $\varepsilon,\alpha_{\rm opt}\geq0$. Alors
+\begin{align*}
+J_\lambda(\widehat p)
+&\leq\Jhat(\widehat p)+\varepsilon\\
+&\leq\inf_P\Jhat+\alpha_{\rm opt}+\varepsilon\\
+&\leq\Jhat(p^\star)+\alpha_{\rm opt}+\varepsilon\\
+&\leq J_\lambda(p^\star)+2\varepsilon+\alpha_{\rm opt}.
+\end{align*}
+Donc $R_\lambda\leq2\varepsilon+\alpha_{\rm opt}$.
+$\alpha_{\rm opt}$ majore un défaut de minimum \emph{global} en valeur.
+Une stationnarité ne le remplace pas. Une RMSE ou un maximum sur 257
+sites ne remplace pas l'erreur \emph{uniforme} $\varepsilon$.
+
+Pour $g=J_\lambda'(p)$, le résidu KKT retenu est exactement
+\[
+r_\lambda(p)=
+\begin{cases}
+|g|,&a<p<b,\\
+\max(0,-g),&p=a,\\
+\max(0,g),&p=b.
+\end{cases}
+\]
+Il est la distance de zéro à $J_\lambda'(p)+N_P(p)$.
+Un gradient non nul peut satisfaire l'optimalité de frontière.
+Ce résidu n'est pas un résidu de gradient projeté.
+
+La monotonie forte et la variationalité au minimiseur donnent
+$m|p-p^\star|\leq r_\lambda(p)$.
+La forte convexité écrite de $p$ vers $p^\star$ donne ensuite
+\[
+R_\lambda(p)\leq r_\lambda(p)|p-p^\star|
+-\frac m2|p-p^\star|^2\leq\frac{r_\lambda(p)^2}{2m}.
+\]
+Ainsi
+\[
+|p-p^\star|\leq r_\lambda(p)/m,\qquad
+R_\lambda(p)\leq r_\lambda(p)^2/(2m).
+\]
+Ces conclusions traitent intérieur et frontières ; elles exigent le gradient
+physique et une constante $m>0$ valable sur le domaine.
+Si l'erreur du gradient calculé était majorée par $\epsilon_g$, on pourrait
+remplacer $r_\lambda$ par son évaluation plus $\epsilon_g$.
+Sans cette majoration, un nombre flottant est un contrôle numérique,
+pas un certificat. La convexité physique ne certifie pas le réseau entier.
+
+\clearpage
+\section{Référence flottante et grille globale}
+\label{sec:grille}
+Si le bracket M0 $[\ell,u]$ encadre la racine intérieure en arithmétique
+réelle, son milieu satisfait
+\[
+|p_{\rm ref}-p^\star|\leq\frac{u-\ell}{2},\qquad
+0\leq J_\lambda(p_{\rm ref})-J_\lambda(p^\star)
+\leq\beta_{\rm ref}=\frac{L_{\rm phys}(u-\ell)^2}{8}.
+\]
+La seconde borne utilise la \emph{borne supérieure} de courbure et la
+stationnarité intérieure. La classification de frontière donne le bon
+minimiseur réel si les signes sont corrects.
+Un bracket et des signes flottants ne sont pas automatiquement certifiés.
+
+Pour $\beta_{\rm eff}=J_\lambda(p_{\rm ref})-J_\lambda(p^\star)$ :
+\[
+D=R-\beta_{\rm eff},\qquad R\in[D,D+\beta_{\rm ref}]
+\]
+sous ces hypothèses. Avec des erreurs d'évaluation majorées par $E_D$,
+l'intervalle devient $[D-E_D,D+E_D+\beta_{\rm ref}]$.
+Ici $E_D$ reste inconnu ; toute différence négative serait conservée.
+
+La sélection neuronale utilise une grille de 1024 intervalles, soit 1025
+candidats, avec les deux frontières. Les prédictions sont réutilisées
+entre les sept $\lambda$. On choisit le meilleur objectif \emph{calculé},
+avec le plus petit $p$ en cas d'égalité flottante, sans raffinement.
+Température, dérivée physique et M0 ne guident pas le choix.
+Ce point est un optimum de grille, pas nécessairement un point stationnaire
+ou le minimum continu exact.
+
+En arithmétique réelle,
+$|\tanh''(u)|=2|h|(1-h^2)$ a pour maximum $4/(3\sqrt3)$.
+Ainsi
+\[
+|\Jhat''|\leq\widehat B=
+\frac4{3\sqrt3}|s_{\rm out}|\alpha_N^2\sum_i|v_i|w_i^2.
+\]
+Un minimum de frontière est candidat ; pour un minimum intérieur,
+un point de grille est à distance au plus $h_{\max}/2$.
+La dérivée s'y annule au minimum continu et Taylor donne
+\[
+\alpha_{\rm grille}\leq\widehat B h_{\max}^2/8.
+\]
+Aucune convexité ou unicité n'est nécessaire. Cette borne porte sur
+l'objectif, pas sur la position. Son évaluation flottante n'est pas
+un majorant validé par arrondis dirigés.
+Si chaque objectif calculé avait une erreur majorée par $\widehat e$,
+la sélection ajouterait au plus $2\widehat e$ ; cette erreur n'est pas
+posée arbitrairement à zéro.
+
+\clearpage
+\section{Protocole de réplication}
+\label{sec:protocole}
+Le plan 2C a été figé après observation du pilote, avant la campagne 3B.
+Il s'agit d'une réplication exploratoire, pas d'une préinscription antérieure
+à toute donnée.
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+Condition & Sites & $n_T$ & $n_{T'}$ & $C_{\rm label}$ si $q_1=1$\\
+\midrule
+\Mone & 16 & 16 & 0 & 16\\
+\Mtwo & 16 & 16 & 16 & 32\\
+\Mthree & 32 & 32 & 0 & 32\\
+\bottomrule
+\end{tabular}
+\end{center}
+Les sites sont les milieux $p_j=a+(j+1/2)(b-a)/n$, pour $n=16$ ou 32.
+Les labels proviennent de l'oracle analytique, évalué en flottants sans bruit.
+Les 257 milieux diagnostiques sont disjoints de l'apprentissage ; les deux
+frontières sont examinées séparément.
+
+Les graines sont les entiers 20262001 à 20262020. Un générateur local tire
+les 16 $w$, puis les 16 $v$, dans $[-\sqrt{6/17},\sqrt{6/17}]$ ;
+les biais sont nuls. Les trois conditions reçoivent les mêmes paramètres
+initiaux, avec des états Adam indépendants.
+Les 60 trajectoires ont chacune 3000 mises à jour full-batch,
+soit 180000 au total, et des instantanés après 300 et 3000.
+Les 120 instantanés ne sont pas 120 trajectoires indépendantes.
+
+Les sept tâches fixes sont
+\[
+\frac{\lambda_b}{2},\quad\lambda_b,\quad
+\lambda_b+\frac{\lambda_a-\lambda_b}{4},\quad
+\lambda_b+\frac{\lambda_a-\lambda_b}{2},\quad
+\lambda_b+\frac{3(\lambda_a-\lambda_b)}4,\quad
+\lambda_a,\quad\frac{3\lambda_a}{2}.
+\]
+Les trois termes centraux définissent $S$. Les quatre autres sont secondaires.
+Les identités exactes du plan, pas des $\lambda$ arrondis, relient les fichiers.
+
+\textbf{La graine est l'unité de réplication.} Chaque bloc emporte trois
+conditions, deux étapes et sept tâches. Les vingt graines représentent
+vingt initialisations d'un même problème physique.
+Aucun arrêt sur validation, sélection de checkpoint ou réglage fondé
+sur les diagnostics n'a été employé. Le résultat principal porte sur 3000 ;
+l'étape 300 reste secondaire.
+
+\clearpage
+\section{Illustration fixée des réseaux sauvegardés}
+\label{sec:illustration}
+\fig{learned_curves}{0.98}{Valeur et sensibilité physique aux 257 sites diagnostiques.
+Illustration fixée : graine 20262001, étape 3000. La référence vient du cache 3B.
+Les segments relient les points, sans lissage ajouté.}
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Condition & RMSE $T$ & RMSE $T'$ & $S$ archivé\\
+\midrule
+\Mone & 0.008805 & 0.918731 & 0.004751\\
+\Mtwo & 0.007184 & 0.532845 & 0.004985\\
+\Mthree & 0.008726 & 0.910702 & 0.004701\\
+\bottomrule
+\end{tabular}
+\end{center}
+Pour cette graine, M2 réduit les RMSE mais son $S$ est légèrement plus élevé.
+Le cas est conservé : il n'a pas été choisi pour représenter une moyenne
+ou favoriser M2. Il rappelle que les métriques de prédiction et de décision
+doivent être distinguées.
+
+Cette seule illustration utilise 771 évaluations conjointes, à partir des
+paramètres sauvegardés et des labels déjà acquis. Les six RMSE servant au
+contrôle de lecture sont exactement égales aux archives ; la tolérance
+avait été fixée à $\mathrm{abs}=10^{-12}$, $\mathrm{rel}=10^{-10}$.
+Ce contrôle ne certifie pas les erreurs flottantes totales.
+
+Aucune nouvelle acquisition physique, décision, référence M0, mise à jour
+d'apprentissage ou réplication bootstrap n'est utilisée pour cette figure.
+Elle est distincte des mesures de la campagne.
+
+\clearpage
+\section{Différences appariées de décision}
+\label{sec:contrastes}
+\fig{paired_scores}{0.88}{Vingt paires à 3000, toutes conservées.
+Une liaison représente une graine. À gauche : mêmes sites et dérivées
+supplémentaires ; à droite : coût de labels égal uniquement sous $q_1=1$.}
+\fig{paired_effects}{0.80}{Différences moyennes de $S$ et IC bootstrap percentiles
+à 95\,\%, $B=2000$, $n=20$ graines. Le signe négatif favorise M2.}
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Contraste & Moyenne & IC 95\,\% & Nég./nulles/pos.\\
+\midrule
+\Mtwo$-$\Mone & $-0.01006$ & $[-0.01460;-0.00557]$ & 13/0/7\\
+\Mtwo$-$\Mthree & $-0.00940$ & $[-0.01390;-0.00503]$ & 13/0/7\\
+\bottomrule
+\end{tabular}
+\end{center}
+Les différences sont calculées par graine avant leur moyenne.
+Les deux IC moyens sont négatifs : M2 améliore le score décisionnel moyen
+dans ce benchmark. Sept différences sont positives dans chaque comparaison.
+Le gain moyen ne garantit donc pas un gain pour toute graine.
+Le contraste concerne la stratégie complète ; il n'identifie pas une
+cause unique liée aux sensibilités.
+
+\clearpage
+\section{Association principale et réponse à l'hypothèse}
+\label{sec:association}
+Le panel principal est M1\_16 à 3000, vingt points sans pooling.
+\[
+\rho_{\rm val}=\operatorname{Spearman}(\operatorname{RMSE}_T,S),\quad
+\rho_{\rm sens}=\operatorname{Spearman}(\operatorname{RMSE}_{T'},S),\quad
+\Delta\rho=\rho_{\rm sens}-\rho_{\rm val}.
+\]
+La définition opératoire 2C emploie tout le panel et les $D$ bruts.
+Elle révise explicitement la proposition historique sur le regret exact,
+sans sélection a posteriori de faibles erreurs de valeur.
+\fig{error_decision}{0.96}{Panel principal à 3000, $n=20$.
+Même échelle verticale dans les deux panneaux. Aucune régression ou
+combinaison avec les panels secondaires.}
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Statistique & Estimation & IC bootstrap 95\,\%\\
+\midrule
+$\rho_{\rm val}$ & 0.9413 & $[0.8000;0.9882]$\\
+$\rho_{\rm sens}$ & 0.9481 & $[0.7925;0.9958]$\\
+$\Delta\rho$ & 0.0068 & $[-0.0568;0.0791]$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Les deux associations sont positives. L'IC de $\Delta\rho$ inclut zéro :
+\textbf{l'association supérieure de l'erreur de sensibilité reste inconclusive}.
+Cette conclusion est distincte des contrastes moyens favorables à M2.
+
+Les RMSE ont vingt valeurs distinctes chacune ; $S$ en a dix-huit,
+avec deux groupes d'égalité de taille deux. Les rangs moyens utilisent
+les égalités exactes des valeurs sauvegardées, sans jitter, arrondi ou
+\texttt{isclose}. La robustesse numérique des classements n'est pas certifiée.
+
+\clearpage
+\section{Bootstrap et résultats secondaires}
+Un générateur local de graine 20262000 construit une seule matrice de
+2000 tirages de vingt indices avec remise. Chaque indice emporte tout
+le bloc de graine ; les répétitions restent présentes.
+La même matrice sert à tous les rho, Delta et contrastes appariés.
+Les rangs sont recalculés dans chaque tirage.
+
+Les IC sont percentiles à 95\,\%, sur les réplications définies.
+Pour $m$ valeurs triées, $h=(m-1)q$ est interpolé linéairement entre
+ses voisins, pour $q=0.025,0.975$.
+Une variable constante donne un rho non défini, jamais zéro.
+Un IC exige au moins 1800 valeurs définies sur 2000 ;
+Delta exige ses deux rho. Ce seuil ne démontre pas une couverture exacte.
+
+\begin{center}\small
+\begin{tabular}{llrrrr}
+\toprule
+Étape & Condition & $\rho_{\rm val}$ & $\rho_{\rm sens}$ & $\Delta$ & IC de $\Delta$\\
+\midrule
+300 & \Mone & ND & ND & ND & ND\\
+300 & \Mtwo & 0.5872 & 0.5162 & $-0.0710$ & $[-0.2792;0.0159]$\\
+300 & \Mthree & ND & ND & ND & ND\\
+3000 & \Mtwo & 0.9308 & 0.9714 & 0.0406 & $[-0.0045;0.1567]$\\
+3000 & \Mthree & 0.9338 & 0.9383 & 0.0045 & $[-0.0484;0.0626]$\\
+\bottomrule
+\end{tabular}
+\end{center}
+À 300, $S$ est constant pour les deux conditions M1 : tous leurs tirages
+rho sont non définis. Pour M2 à 300, 1976/2000 tirages sont définis, 24 ne
+le sont pas. Tous les panels non constants à 3000 ont 2000/2000 tirages
+définis. Aucun panel secondaire n'est promu au rang de principal.
+
+Les deux contrastes à 300 ont la même moyenne $-0.008826$ et le même IC
+$[-0.017174;-0.001916]$ : 4 différences négatives, 16 nulles.
+Une moyenne appariée peut être définie quand un rho ne l'est pas.
+
+\subsection{Frontières et transitions, hors de \texorpdfstring{$S$}{S}}
+À 300, les quatre tâches secondaires ont $D=0$ pour toutes les conditions.
+À 3000 :
+\begin{center}\small
+\begin{tabular}{lrrr}
+\toprule
+Tâche & \Mone & \Mtwo & \Mthree\\
+\midrule
+$\lambda_b/2$ : moyenne $D$ & 0.001885 & 0 & 0.001865\\
+$\lambda_b/2$ : écarts de branche /20 & 6 & 0 & 6\\
+$\lambda_b$ : moyenne $D$ & 0.001664 & 0.000187 & 0.001660\\
+$\lambda_b$ : écarts de branche /20 & 8 & 1 & 8\\
+$\lambda_a$, $3\lambda_a/2$ : moyenne $D$ & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+Les zéros de frontière ne prouvent pas une qualité intérieure.
+Les intervalles secondaires restent exploratoires, sans garantie
+simultanée à 95\,\%.
+
+\clearpage
+\section{Coûts et reproductibilité}
+Le coût logique est $C_{\rm label}=n_T+q_1n_{T'}$.
+$q_1=1$ est une convention, pas une mesure.
+M2\_16 contre M1\_16 ajoute seize dérivées aux mêmes sites.
+M2\_16 contre M1\_32 égalise ce coût à 32 uniquement sous cette convention,
+sans égaliser sites, opérations ou durée. Les dérivées exactes de l'oracle
+analytique ne deviennent pas gratuites dans une application générale.
+
+Le cache partage les acquisitions entre graines et utilise
+\texttt{quantité:p.hex()}, sans fusion approchée. Les signatures des jobs
+portent sur leurs labels propres : enrichir le cache de diagnostics
+ne modifie pas leur identité.
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+Compte observé 3B & $T$ & $T'$\\
+\midrule
+Nouveaux appels ciblés & 387 & 358\\
+Demandes de cache & 1163 & 1115\\
+Hits de cache & 776 & 757\\
+Labels archivés distincts utilisés & 21 & 21\\
+Entrées totales & 420 & 391\\
+\bottomrule
+\end{tabular}
+\end{center}
+Le cache avait importé 33 anciens labels de chaque quantité.
+Les sept M0 de 2B ont été réutilisés, sans nouvel appel.
+À l'import historique, deux valeurs, deux dérivées et deux courbures
+ont été évaluées séparément : compte déduit du code, non directement
+instrumenté. Elles ne sont pas cachées dans un total nul.
+
+Les temps 3B observés sur ce PC sont environ 477.965 s d'apprentissage,
+0.788 s de logging, 13.456 s de métriques et 43.145 s de persistance.
+La durée totale de l'invocation est 566.686 s ; ces catégories ne
+constituent pas une décomposition exhaustive ni un classement universel.
+
+Les checkpoints conservent 49 paramètres, 98 moments et compteur global.
+La reprise exacte a été vérifiée sur fixture avant la campagne.
+Les contrôles d'intégration l'ont précédée ; oracle, réseau, gradients
+et statistiques ont été vérifiés par phases. Aucune suite globale exécutée
+conjointement n'est annoncée. Les 17 tests statistiques 3C ont été suivis
+d'une seule analyse réelle à $B=2000$.
+
+Les lexèmes CSV, contextes, modèles et empreintes sont archivés.
+Les moyennes descriptives à 3000 sont :
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Condition (20 modèles) & RMSE $T$ & RMSE $T'$ & $S$\\
+\midrule
+\Mone & 0.011239 & 1.029386 & 0.013452\\
+\Mtwo & 0.006138 & 0.442578 & 0.003389\\
+\Mthree & 0.011017 & 1.015106 & 0.012788\\
+\bottomrule
+\end{tabular}
+\end{center}
+Cette présentation ne les modifie pas et ajoute uniquement l'illustration
+bornée de la section~\ref{sec:illustration}.
+
+\clearpage
+\section{Discussion et conclusion}
+M2 améliore le score décisionnel moyen dans les deux comparaisons prévues,
+avec des IC négatifs à 3000. Le résultat concerne sa stratégie complète
+dans le benchmark fixé. Il ne montre pas que réduire la RMSE de dérivée
+soit l'unique cause du gain.
+
+La question de classement reçoit une autre réponse :
+$\rho_{\rm val}$ et $\rho_{\rm sens}$ sont positifs mais l'IC de leur
+différence inclut zéro. L'association supérieure des sensibilités
+reste inconclusive. Cela ne justifie pas un ajustement des graines
+ou du budget après observation.
+
+L'illustration fixée rappelle cette distinction : pour la graine 20262001,
+M2 réduit les RMSE et augmente légèrement $S$.
+Chaque comparaison moyenne comporte sept paires défavorables.
+Une association in-sample n'est ni prédiction hors échantillon validée,
+ni causalité, ni garantie uniforme de fiabilité.
+
+\subsection{Limites}
+Une seule variable physique, un oracle sans bruit, une architecture tanh
+et un budget Adam fixés limitent la portée de l'étude.
+Les vingt graines sont vingt initialisations d'un même problème,
+et le protocole a été arrêté après inspection du pilote.
+Les estimations de référence/grille sont conditionnelles ; les erreurs
+flottantes totales ne sont pas rigoureusement majorées.
+Aucun gain de vitesse sur cette formule analytique bon marché n'est revendiqué.
+
+Les preuves spécialisent des arguments classiques.
+Les références ont été lues partiellement, aux niveaux consignés dans
+le registre ; aucune revue exhaustive ou nouveauté méthodologique n'en
+est déduite. Les IC bootstrap empiriques, à $n=20$ et $B$ fini,
+n'ont pas une couverture exacte démontrée et ne donnent pas une
+probabilité bayésienne de l'hypothèse.
+
+\subsection{Une extension future}
+Une seule extension documentaire est proposée : tester le transfert de
+ce protocole à un second cas physique où le coût des valeurs et des
+sensibilités serait explicitement mesuré. Elle examinerait la portée
+au-delà de l'oracle analytique. Modèle, budget et séparation des données
+devraient être fixés avant exécution. Elle reste non exécutée.
+
+\subsection{Conclusion}
+Le pipeline relie un petit réseau à une décision physique évaluable,
+avec gradients analytiques, reprise contrôlée et coûts explicites.
+Dans ce benchmark, M2 améliore le score décisionnel moyen ;
+l'hypothèse d'une association supérieure de l'erreur de sensibilité
+reste inconclusive. L'un de ces résultats ne prouve pas l'autre.
+
+\clearpage
+\appendix
+\section{Gradients mixtes et preuve contrainte}
+Posons $f=\That$, $g=\That'$, $h_i=\tanh(w_iz+b_i)$, $q_i=1-h_i^2$.
+$p,\alpha_N,\beta_N,c_{\rm out},s_{\rm out}$ et les cibles sont constants
+lors de la dérivation en $\theta$ :
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Paramètre & $\partial f$ & $\partial g$\\
+\midrule
+$w_i$ & $s_{\rm out}v_i zq_i$
+& $s_{\rm out}\alpha_Nv_iq_i(1-2w_i z h_i)$\\
+$b_i$ & $s_{\rm out}v_iq_i$
+& $-2s_{\rm out}\alpha_Nv_iw_i h_iq_i$\\
+$v_i$ & $s_{\rm out}h_i$ & $s_{\rm out}\alpha_Nw_iq_i$\\
+$d$ & $s_{\rm out}$ & $0$\\
+\bottomrule
+\end{tabular}
+\end{center}
+Comme $\partial_{w_i}q_i=-2h_iq_iz$ et
+$\partial_{b_i}q_i=-2h_iq_i$, la dérivation de $v_iw_iq_i$
+comprend le terme direct $v_iq_i$ et celui de chaîne.
+$w_i=0$ n'annule donc pas généralement $\partial_{w_i}g$.
+Les deux vecteurs ont 49 composantes ordonnées $w,b,v,d$.
+
+\subsection{Complément de preuve KKT}
+Le cône normal est
+$N_P(p)=\{n:\langle n,y-p\rangle\leq0,\ \forall y\in P\}$.
+Choisissons $n$ réalisant le résidu, $v=J'(p)+n$, $|v|=r$,
+et $d=p-p^\star$.
+La monotonie forte, l'optimalité au minimiseur et le signe du cône donnent
+\[
+m|d|^2\leq\langle J'(p)-J'(p^\star),d\rangle
+\leq\langle J'(p)+n,d\rangle\leq r|d|.
+\]
+On utilise $\langle J'(p^\star),d\rangle\geq0$ et
+$\langle n,d\rangle\geq0$. La forte convexité donne
+\[
+R\leq\langle J'(p),d\rangle-\frac m2|d|^2
+\leq r|d|-\frac m2|d|^2\leq\frac{r^2}{2m}.
+\]
+La preuve respecte les frontières sans supposer un gradient nul.
+
+\subsection{Valeurs et dérivées}
+Un décalage constant $\That=T+c$ change l'erreur de valeur sans changer
+les décisions. Une perturbation $\varepsilon\sin(\omega p)$ peut conserver
+une petite erreur uniforme de valeur et amplifier l'erreur de dérivée.
+Elle ne contredit pas $R\leq2\varepsilon+\alpha_{\rm opt}$ au minimum global.
+Ces exemples classiques ne prouvent pas leur réalisation par
+l'architecture fixée ni leur observation dans l'expérience.
+
+\clearpage
+\section{Sources et lecture reproductible}
+Les résultats complets sont les archives 3B/3C. Les quatre données de
+présentation sont dans \texttt{report/data/}. Les graphiques lisent ces CSV,
+sans recalculer rho ou bootstrap. Les sources autonomes sont dans
+\texttt{report/figures/}.
+\begin{itemize}
+\item Rapport : \texttt{report/main.tex}.
+\item Diapositives : \texttt{slides/main.tex}.
+\end{itemize}
+
+La première commande d'inspection, depuis la racine, est :
+\begin{verbatim}
+python -I -S -B scripts/export_presentation_material.py --check
+\end{verbatim}
+Elle ne réévalue aucun réseau. Le contrôle documentaire est
+\texttt{scripts/build\_presentation.py --check}.
+Le mode de construction exige un outil local existant et la vérification
+de ses options cache/hors ligne, sans apprentissage ou acquisition.
+
+\subsection*{Niveaux de lecture}
+\emph{Sobolev Training} : résumé et section 2 lus.
+Le FNO informé par dérivées est une prépublication, avec lecture sélective
+des sections consignées ; son acceptation n'est pas vérifiée.
+Pour le cadre de région de confiance, introduction et sections 2--3 du
+manuscrit auteur sont lues. Pour \emph{Smart Predict, then Optimize},
+sections 2--3 de la version arXiv v5 et notice éditeur sont lues.
+Aucune preuve ou implémentation de ces travaux n'est auditée intégralement.
+Les preuves de ce rapport sont les arguments autonomes classiques
+du dossier mathématique local.
+\input{references.tex}
+\end{document}

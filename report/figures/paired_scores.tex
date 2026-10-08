@@ -1,0 +1,50 @@
+\documentclass[tikz,border=6pt]{standalone}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepgfplotslibrary{groupplots}
+\usetikzlibrary{calc}
+\pgfplotsset{compat=1.18}
+\definecolor{mone}{RGB}{0,114,178}
+\definecolor{mtwo}{RGB}{213,94,0}
+\definecolor{mthree}{RGB}{0,130,100}
+\pgfplotsset{every axis/.append style={
+font=\small,grid=major,grid style={gray!18},axis line style={gray!70},
+tick label style={font=\small},label style={font=\small},
+scaled ticks=false,/pgf/number format/fixed,/pgf/number format/precision=3,
+legend style={font=\small,draw=none,fill=none}}}
+
+\begin{document}
+\pgfplotstableread[col sep=comma]{../data/paired_scores.csv}\scores
+\begin{tikzpicture}
+\begin{groupplot}[group style={group size=2 by 1,horizontal sep=1.8cm},
+width=8cm,height=6.5cm,ymin=0,ymax=0.028,ytick={0,0.007,0.014,0.021,0.028},
+xmin=0.7,xmax=2.3,xtick={1,2},ylabel={$S$ : moyenne des trois $D$ intérieurs},
+title style={align=center,font=\small}]
+\nextgroupplot[xticklabels={M1\_16,M2\_16},
+title={Mêmes 16 sites\\M2 ajoute 16 dérivées}]
+\foreach \row in {0,...,19}{
+\pgfplotstablegetelem{\row}{S_M1_16}\of{\scores}\edef\leftValue{\pgfplotsretval}
+\pgfplotstablegetelem{\row}{S_M2_16}\of{\scores}\edef\rightValue{\pgfplotsretval}
+\addplot[gray!50,thin,no marks] coordinates {(1,\leftValue) (2,\rightValue)};
+}
+\addplot[only marks,mone,mark=*,mark size=2.6pt] table[x expr=1,y=S_M1_16]{\scores};
+\addplot[only marks,mtwo,mark=triangle*,mark size=3pt] table[x expr=2,y=S_M2_16]{\scores};
+\nextgroupplot[xticklabels={M1\_32,M2\_16},
+title={Coût conventionnel de labels égal\\$C_{\mathrm{label}}=32$ sous $q_1=1$}]
+\foreach \row in {0,...,19}{
+\pgfplotstablegetelem{\row}{S_M1_32}\of{\scores}\edef\leftValue{\pgfplotsretval}
+\pgfplotstablegetelem{\row}{S_M2_16}\of{\scores}\edef\rightValue{\pgfplotsretval}
+\addplot[gray!50,thin,no marks] coordinates {(1,\leftValue) (2,\rightValue)};
+}
+\addplot[only marks,mthree,mark=diamond*,mark size=3pt] table[x expr=1,y=S_M1_32]{\scores};
+\addplot[only marks,mtwo,mark=triangle*,mark size=3pt] table[x expr=2,y=S_M2_16]{\scores};
+\end{groupplot}
+\node[anchor=north,font=\small,align=center]
+at ($(group c1r1.south)!0.5!(group c2r1.south)+(0,-0.8cm)$)
+{Étape 3000, $n=20$ graines appariées, toutes conservées\\
+$S$ est une différence de coût contre M0 flottant ; unités sans dimension};
+\end{tikzpicture}
+\end{document}

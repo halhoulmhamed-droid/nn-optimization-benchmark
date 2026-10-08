@@ -1,0 +1,1688 @@
+{
+  "anomalies": [],
+  "bootstrap_csv_headers": [
+    "replicate",
+    "seed_indices_json",
+    "distinct_seeds",
+    "rho_value__M1_16@300",
+    "rho_value__M1_16@300__status_reason",
+    "rho_sensitivity__M1_16@300",
+    "rho_sensitivity__M1_16@300__status_reason",
+    "Delta_rho__M1_16@300",
+    "Delta_rho__M1_16@300__status_reason",
+    "rho_value__M2_16@300",
+    "rho_value__M2_16@300__status_reason",
+    "rho_sensitivity__M2_16@300",
+    "rho_sensitivity__M2_16@300__status_reason",
+    "Delta_rho__M2_16@300",
+    "Delta_rho__M2_16@300__status_reason",
+    "rho_value__M1_32@300",
+    "rho_value__M1_32@300__status_reason",
+    "rho_sensitivity__M1_32@300",
+    "rho_sensitivity__M1_32@300__status_reason",
+    "Delta_rho__M1_32@300",
+    "Delta_rho__M1_32@300__status_reason",
+    "mean_d_same_sites__300",
+    "mean_d_same_sites__300__status_reason",
+    "mean_d_equal_label_budget_q1_1__300",
+    "mean_d_equal_label_budget_q1_1__300__status_reason",
+    "rho_value__M1_16@3000",
+    "rho_value__M1_16@3000__status_reason",
+    "rho_sensitivity__M1_16@3000",
+    "rho_sensitivity__M1_16@3000__status_reason",
+    "Delta_rho__M1_16@3000",
+    "Delta_rho__M1_16@3000__status_reason",
+    "rho_value__M2_16@3000",
+    "rho_value__M2_16@3000__status_reason",
+    "rho_sensitivity__M2_16@3000",
+    "rho_sensitivity__M2_16@3000__status_reason",
+    "Delta_rho__M2_16@3000",
+    "Delta_rho__M2_16@3000__status_reason",
+    "rho_value__M1_32@3000",
+    "rho_value__M1_32@3000__status_reason",
+    "rho_sensitivity__M1_32@3000",
+    "rho_sensitivity__M1_32@3000__status_reason",
+    "Delta_rho__M1_32@3000",
+    "Delta_rho__M1_32@3000__status_reason",
+    "mean_d_same_sites__3000",
+    "mean_d_same_sites__3000__status_reason",
+    "mean_d_equal_label_budget_q1_1__3000",
+    "mean_d_equal_label_budget_q1_1__3000__status_reason"
+  ],
+  "computation_counts": {
+    "M0_calls": 0,
+    "decisions_computed": 0,
+    "neural_calls": 0,
+    "paired_seed_blocks": 20,
+    "physical_calls": 0,
+    "real_block_bootstrap_matrices": 1,
+    "replications": 2000,
+    "statistic_columns": 22,
+    "training_updates": 0
+  },
+  "export_kind": "saved_statistical_results_projection_not_historical_archive",
+  "limits": [
+    "twenty initializations on one fixed physical benchmark, not twenty physical problems",
+    "protocol frozen before replication after inspecting the pilot",
+    "S is raw D relative to floating M0, not certified exact regret",
+    "grid/reference estimates conditional; total evaluation errors not bounded",
+    "rank association is not out-of-sample prediction, causality or uniform reliability",
+    "percentile bootstrap has finite B and no proven exact finite-sample coverage",
+    "secondary intervals are exploratory and not simultaneous 95% guarantees",
+    "M2 contrast represents the whole training strategy, not a unique causal derivative effect"
+  ],
+  "recipe": {
+    "bootstrap": {
+      "B": 2000,
+      "min_defined_fraction": 0.9,
+      "seed": 20262000
+    },
+    "conditions": [
+      "M1_16",
+      "M2_16",
+      "M1_32"
+    ],
+    "contrasts": [
+      {
+        "baseline": "M1_16",
+        "id": "same_sites"
+      },
+      {
+        "baseline": "M1_32",
+        "id": "equal_label_budget_q1_1"
+      }
+    ],
+    "domain": [
+      0.02,
+      0.2
+    ],
+    "interpretation_rule": {
+      "negative": "opposite direction if interval strictly negative",
+      "origin": "fixed interpretation rule recorded before the saved analysis",
+      "positive": "support if Delta interval strictly positive",
+      "reason": "2C fixes positive Delta hypothesis but no interval decision rule",
+      "undefined": "non identifiable",
+      "zero": "inconclusive if interval includes zero"
+    },
+    "paired_RMSE_contrasts": "not explicitly prescribed in 2C; not added",
+    "primary_condition": "M1_16",
+    "primary_step": 3000,
+    "primary_tasks": [
+      "interior_quarter",
+      "interior_half",
+      "interior_three_quarters"
+    ],
+    "scope": "REAL_SAVED_CAMPAIGN",
+    "secondary_tasks": [
+      "B_half",
+      "B_transition",
+      "A_transition",
+      "A_three_halves"
+    ],
+    "seeds": [
+      20262001,
+      20262002,
+      20262003,
+      20262004,
+      20262005,
+      20262006,
+      20262007,
+      20262008,
+      20262009,
+      20262010,
+      20262011,
+      20262012,
+      20262013,
+      20262014,
+      20262015,
+      20262016,
+      20262017,
+      20262018,
+      20262019,
+      20262020
+    ],
+    "steps": [
+      300,
+      3000
+    ],
+    "tasks": [
+      {
+        "formula": "lambda_b/2",
+        "id": "B_half",
+        "lambda_value": 0.48619093525492485
+      },
+      {
+        "formula": "lambda_b",
+        "id": "B_transition",
+        "lambda_value": 0.9723818705098497
+      },
+      {
+        "formula": "lambda_b+(lambda_a-lambda_b)/4",
+        "id": "interior_quarter",
+        "lambda_value": 3.0577097236693422
+      },
+      {
+        "formula": "lambda_b+(lambda_a-lambda_b)/2",
+        "id": "interior_half",
+        "lambda_value": 5.143037576828834
+      },
+      {
+        "formula": "lambda_b+3*(lambda_a-lambda_b)/4",
+        "id": "interior_three_quarters",
+        "lambda_value": 7.228365429988326
+      },
+      {
+        "formula": "lambda_a",
+        "id": "A_transition",
+        "lambda_value": 9.313693283147819
+      },
+      {
+        "formula": "3*lambda_a/2",
+        "id": "A_three_halves",
+        "lambda_value": 13.970539924721727
+      }
+    ]
+  },
+  "results": {
+    "bootstrap": {
+      "B": 2000,
+      "distinct_seed_count_max": 17,
+      "distinct_seed_count_min": 8,
+      "duplicate_draws_retained": true,
+      "generation": "random.Random(20262000); randrange(20) in row-major order",
+      "matrix_encoding": "compact ASCII JSON array of 2000 lists of 20 zero-based indices",
+      "matrix_sha256": "5269464D8ACF32CD2402B97F82CF60F59ED93F42D2B9CAB656048AFD58701167",
+      "n": 20,
+      "seed": 20262000,
+      "seed_order": [
+        20262001,
+        20262002,
+        20262003,
+        20262004,
+        20262005,
+        20262006,
+        20262007,
+        20262008,
+        20262009,
+        20262010,
+        20262011,
+        20262012,
+        20262013,
+        20262014,
+        20262015,
+        20262016,
+        20262017,
+        20262018,
+        20262019,
+        20262020
+      ],
+      "shared_matrix_all_statistics": true
+    },
+    "boundary_diagnostics": [
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "B_half",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "B_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "A_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "A_three_halves",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "B_half",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "B_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "A_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "A_three_halves",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_32",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "B_half",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_32",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "B_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_32",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "A_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_32",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 300,
+        "task": "A_three_halves",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 6,
+        "condition": "M1_16",
+        "maximum_D": 0.011215767624309259,
+        "mean_D": 0.001884518897634499,
+        "mean_neural_kkt": 0.0003238561158000697,
+        "mean_physical_kkt": 0.18112974346394045,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 6,
+        "step": 3000,
+        "task": "B_half",
+        "zero_D": 14
+      },
+      {
+        "branch_mismatches": 8,
+        "condition": "M1_16",
+        "maximum_D": 0.006708925904997998,
+        "mean_D": 0.0016642486996379323,
+        "mean_neural_kkt": 0.0004513054358681157,
+        "mean_physical_kkt": 0.12210851058397978,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 8,
+        "step": 3000,
+        "task": "B_transition",
+        "zero_D": 12
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "A_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "A_three_halves",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "B_half",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 1,
+        "condition": "M2_16",
+        "maximum_D": 0.0037449728403520788,
+        "mean_D": 0.00018724864201760395,
+        "mean_neural_kkt": 3.303224652872472e-05,
+        "mean_physical_kkt": 0.014788878598995126,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 1,
+        "step": 3000,
+        "task": "B_transition",
+        "zero_D": 19
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "A_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M2_16",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "A_three_halves",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 6,
+        "condition": "M1_32",
+        "maximum_D": 0.01109442894927154,
+        "mean_D": 0.0018652210699554347,
+        "mean_neural_kkt": 0.0003126085419048713,
+        "mean_physical_kkt": 0.180766714073966,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 6,
+        "step": 3000,
+        "task": "B_half",
+        "zero_D": 14
+      },
+      {
+        "branch_mismatches": 8,
+        "condition": "M1_32",
+        "maximum_D": 0.006708925904997998,
+        "mean_D": 0.0016597779026548188,
+        "mean_neural_kkt": 0.0004972254208430171,
+        "mean_physical_kkt": 0.12163778739156288,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 8,
+        "step": 3000,
+        "task": "B_transition",
+        "zero_D": 12
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_32",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "A_transition",
+        "zero_D": 20
+      },
+      {
+        "branch_mismatches": 0,
+        "condition": "M1_32",
+        "maximum_D": 0.0,
+        "mean_D": 0.0,
+        "mean_neural_kkt": 0.0,
+        "mean_physical_kkt": 0.0,
+        "minimum_D": 0.0,
+        "n": 20,
+        "negative_D": 0,
+        "positive_D": 0,
+        "step": 3000,
+        "task": "A_three_halves",
+        "zero_D": 20
+      }
+    ],
+    "contrasts": [
+      {
+        "id": "same_sites",
+        "inference": "FAVORABLE_M2_EXPLORATOIRE",
+        "interval": {
+          "B": 2000,
+          "defined": 2000,
+          "defined_fraction": 1.0,
+          "interpretation": "percentiles conditional on defined empirical replicates",
+          "lower": -0.01717377050557181,
+          "required_defined": 1800,
+          "status": "DEFINED_ON_DEFINED_REPLICATES",
+          "undefined": 0,
+          "undefined_reasons": {},
+          "upper": -0.0019162931484182871
+        },
+        "metric": "S",
+        "pairing": "M2_16 minus M1_16",
+        "role": "secondary",
+        "seed_order": [
+          20262001,
+          20262002,
+          20262003,
+          20262004,
+          20262005,
+          20262006,
+          20262007,
+          20262008,
+          20262009,
+          20262010,
+          20262011,
+          20262012,
+          20262013,
+          20262014,
+          20262015,
+          20262016,
+          20262017,
+          20262018,
+          20262019,
+          20262020
+        ],
+        "step": 300,
+        "summary": {
+          "IQR": 0.0,
+          "differences": [
+            0.0,
+            -0.051929913479194914,
+            0.0,
+            -0.038325862968365744,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.04232830621543844,
+            0.0,
+            -0.04393435047139778,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dispersion": "sample sd (n-1) and IQR",
+          "maximum": 0.0,
+          "mean": -0.008825921656719844,
+          "median": 0.0,
+          "minimum": -0.051929913479194914,
+          "n": 20,
+          "negative": 4,
+          "positive": 0,
+          "q1": 0.0,
+          "q3": 0.0,
+          "sample_sd": 0.018251982564017857,
+          "zero": 16
+        },
+        "units": "raw physical objective difference"
+      },
+      {
+        "id": "equal_label_budget_q1_1",
+        "inference": "FAVORABLE_M2_EXPLORATOIRE",
+        "interval": {
+          "B": 2000,
+          "defined": 2000,
+          "defined_fraction": 1.0,
+          "interpretation": "percentiles conditional on defined empirical replicates",
+          "lower": -0.01717377050557181,
+          "required_defined": 1800,
+          "status": "DEFINED_ON_DEFINED_REPLICATES",
+          "undefined": 0,
+          "undefined_reasons": {},
+          "upper": -0.0019162931484182871
+        },
+        "metric": "S",
+        "pairing": "M2_16 minus M1_32",
+        "role": "secondary",
+        "seed_order": [
+          20262001,
+          20262002,
+          20262003,
+          20262004,
+          20262005,
+          20262006,
+          20262007,
+          20262008,
+          20262009,
+          20262010,
+          20262011,
+          20262012,
+          20262013,
+          20262014,
+          20262015,
+          20262016,
+          20262017,
+          20262018,
+          20262019,
+          20262020
+        ],
+        "step": 300,
+        "summary": {
+          "IQR": 0.0,
+          "differences": [
+            0.0,
+            -0.051929913479194914,
+            0.0,
+            -0.038325862968365744,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            -0.04232830621543844,
+            0.0,
+            -0.04393435047139778,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "dispersion": "sample sd (n-1) and IQR",
+          "maximum": 0.0,
+          "mean": -0.008825921656719844,
+          "median": 0.0,
+          "minimum": -0.051929913479194914,
+          "n": 20,
+          "negative": 4,
+          "positive": 0,
+          "q1": 0.0,
+          "q3": 0.0,
+          "sample_sd": 0.018251982564017857,
+          "zero": 16
+        },
+        "units": "raw physical objective difference"
+      },
+      {
+        "id": "same_sites",
+        "inference": "FAVORABLE_M2_EXPLORATOIRE",
+        "interval": {
+          "B": 2000,
+          "defined": 2000,
+          "defined_fraction": 1.0,
+          "interpretation": "percentiles conditional on defined empirical replicates",
+          "lower": -0.014596455944261236,
+          "required_defined": 1800,
+          "status": "DEFINED_ON_DEFINED_REPLICATES",
+          "undefined": 0,
+          "undefined_reasons": {},
+          "upper": -0.005571433691969546
+        },
+        "metric": "S",
+        "pairing": "M2_16 minus M1_16",
+        "role": "central_comparison",
+        "seed_order": [
+          20262001,
+          20262002,
+          20262003,
+          20262004,
+          20262005,
+          20262006,
+          20262007,
+          20262008,
+          20262009,
+          20262010,
+          20262011,
+          20262012,
+          20262013,
+          20262014,
+          20262015,
+          20262016,
+          20262017,
+          20262018,
+          20262019,
+          20262020
+        ],
+        "step": 3000,
+        "summary": {
+          "IQR": 0.020816476814659524,
+          "differences": [
+            0.00023412992748502327,
+            -0.003615700475907461,
+            -0.023792596949504197,
+            -0.024940204319875276,
+            0.0006919529706160095,
+            -0.020507046320414484,
+            -0.020661366097200373,
+            -0.0238536930450031,
+            -0.019178642900813243,
+            0.00016775508499944358,
+            0.0006624151535897056,
+            -0.00401390954538805,
+            0.00038101241773920956,
+            -0.024196018472432024,
+            0.0005118902806298857,
+            -0.00019879785886086233,
+            -0.01503012574803253,
+            0.0005961841276948734,
+            -0.020485230840636026,
+            -0.004036281043469573
+          ],
+          "dispersion": "sample sd (n-1) and IQR",
+          "maximum": 0.0006919529706160095,
+          "mean": -0.010063213682739153,
+          "median": -0.004025095294428811,
+          "minimum": -0.024940204319875276,
+          "n": 20,
+          "negative": 13,
+          "positive": 7,
+          "q1": -0.020545626264610956,
+          "q3": 0.00027085055004856984,
+          "sample_sd": 0.010822155122304066,
+          "zero": 0
+        },
+        "units": "raw physical objective difference"
+      },
+      {
+        "id": "equal_label_budget_q1_1",
+        "inference": "FAVORABLE_M2_EXPLORATOIRE",
+        "interval": {
+          "B": 2000,
+          "defined": 2000,
+          "defined_fraction": 1.0,
+          "interpretation": "percentiles conditional on defined empirical replicates",
+          "lower": -0.013900843260980277,
+          "required_defined": 1800,
+          "status": "DEFINED_ON_DEFINED_REPLICATES",
+          "undefined": 0,
+          "undefined_reasons": {},
+          "upper": -0.005027841748986217
+        },
+        "metric": "S",
+        "pairing": "M2_16 minus M1_32",
+        "role": "central_comparison",
+        "seed_order": [
+          20262001,
+          20262002,
+          20262003,
+          20262004,
+          20262005,
+          20262006,
+          20262007,
+          20262008,
+          20262009,
+          20262010,
+          20262011,
+          20262012,
+          20262013,
+          20262014,
+          20262015,
+          20262016,
+          20262017,
+          20262018,
+          20262019,
+          20262020
+        ],
+        "step": 3000,
+        "summary": {
+          "IQR": 0.0208838360065411,
+          "differences": [
+            0.0002836542023038442,
+            -0.003641057098561699,
+            -0.02376494343947466,
+            -0.024940204319875276,
+            0.0006748824524334864,
+            -0.020507046320414484,
+            -0.020661366097200373,
+            -0.02383125866882766,
+            -0.010563241657447117,
+            0.00013393194922188024,
+            0.0006406429313954671,
+            -0.003968046239092342,
+            0.0005458957094802708,
+            -0.02416137733002181,
+            0.0005018763608090433,
+            -0.00022558317001101624,
+            -0.01054178129588379,
+            0.0005840463128884421,
+            -0.020485230840636026,
+            -0.004055293268151794
+          ],
+          "dispersion": "sample sd (n-1) and IQR",
+          "maximum": 0.0006748824524334864,
+          "mean": -0.009399074991353281,
+          "median": -0.004011669753622068,
+          "minimum": -0.024940204319875276,
+          "n": 20,
+          "negative": 13,
+          "positive": 7,
+          "q1": -0.020545626264610956,
+          "q3": 0.00033820974193014396,
+          "sample_sd": 0.010535095044718126,
+          "zero": 0
+        },
+        "units": "raw physical objective difference"
+      }
+    ],
+    "panels": [
+      {
+        "condition": "M1_16",
+        "inference": {
+          "caution": "positive Delta alone does not make two negative associations useful",
+          "point_sign": "undefined",
+          "positive_error_associations": false,
+          "status": "NON_IDENTIFIABLE"
+        },
+        "n": 20,
+        "role": "secondary",
+        "statistics": {
+          "Delta_rho": {
+            "estimate": {
+              "reason": "UNDEFINED_COMPONENT:CONSTANT_Y;CONSTANT_Y",
+              "value": null
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 0,
+              "defined_fraction": 0.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": null,
+              "required_defined": 1800,
+              "status": "NON_IDENTIFIABLE_BOOTSTRAP",
+              "undefined": 2000,
+              "undefined_reasons": {
+                "UNDEFINED_COMPONENT:CONSTANT_Y;CONSTANT_Y": 2000
+              },
+              "upper": null
+            }
+          },
+          "rho_sensitivity": {
+            "estimate": {
+              "reason": "CONSTANT_Y",
+              "value": null
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 0,
+              "defined_fraction": 0.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": null,
+              "required_defined": 1800,
+              "status": "NON_IDENTIFIABLE_BOOTSTRAP",
+              "undefined": 2000,
+              "undefined_reasons": {
+                "CONSTANT_Y": 2000
+              },
+              "upper": null
+            }
+          },
+          "rho_value": {
+            "estimate": {
+              "reason": "CONSTANT_Y",
+              "value": null
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 0,
+              "defined_fraction": 0.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": null,
+              "required_defined": 1800,
+              "status": "NON_IDENTIFIABLE_BOOTSTRAP",
+              "undefined": 2000,
+              "undefined_reasons": {
+                "CONSTANT_Y": 2000
+              },
+              "upper": null
+            }
+          }
+        },
+        "step": 300,
+        "tie_profiles": {
+          "S": {
+            "distinct": 1,
+            "duplicate_observations": 19,
+            "n": 20,
+            "smallest_distinct_gap": null,
+            "tie_groups": 1,
+            "tied_observations": 20,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_derivative": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 0.00044904611634732916,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_value": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 7.461526421607967e-06,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          }
+        }
+      },
+      {
+        "condition": "M2_16",
+        "inference": {
+          "caution": "positive Delta alone does not make two negative associations useful",
+          "point_sign": "nonpositive",
+          "positive_error_associations": true,
+          "status": "INCONCLUSIVE"
+        },
+        "n": 20,
+        "role": "secondary",
+        "statistics": {
+          "Delta_rho": {
+            "estimate": {
+              "reason": null,
+              "value": -0.07098415825352333
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 1976,
+              "defined_fraction": 0.988,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": -0.27922287448185346,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 24,
+              "undefined_reasons": {
+                "UNDEFINED_COMPONENT:CONSTANT_Y;CONSTANT_Y": 24
+              },
+              "upper": 0.015882773828962124
+            }
+          },
+          "rho_sensitivity": {
+            "estimate": {
+              "reason": null,
+              "value": 0.5162484236619881
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 1976,
+              "defined_fraction": 0.988,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.023080409481194417,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 24,
+              "undefined_reasons": {
+                "CONSTANT_Y": 24
+              },
+              "upper": 0.8127682665589774
+            }
+          },
+          "rho_value": {
+            "estimate": {
+              "reason": null,
+              "value": 0.5872325819155114
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 1976,
+              "defined_fraction": 0.988,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.21301417805600725,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 24,
+              "undefined_reasons": {
+                "CONSTANT_Y": 24
+              },
+              "upper": 0.8100014792868434
+            }
+          }
+        },
+        "step": 300,
+        "tie_profiles": {
+          "S": {
+            "distinct": 5,
+            "duplicate_observations": 15,
+            "n": 20,
+            "smallest_distinct_gap": 0.001606044255959338,
+            "tie_groups": 1,
+            "tied_observations": 16,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_derivative": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 0.0009141725648094123,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_value": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 6.376740769149791e-06,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          }
+        }
+      },
+      {
+        "condition": "M1_32",
+        "inference": {
+          "caution": "positive Delta alone does not make two negative associations useful",
+          "point_sign": "undefined",
+          "positive_error_associations": false,
+          "status": "NON_IDENTIFIABLE"
+        },
+        "n": 20,
+        "role": "secondary",
+        "statistics": {
+          "Delta_rho": {
+            "estimate": {
+              "reason": "UNDEFINED_COMPONENT:CONSTANT_Y;CONSTANT_Y",
+              "value": null
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 0,
+              "defined_fraction": 0.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": null,
+              "required_defined": 1800,
+              "status": "NON_IDENTIFIABLE_BOOTSTRAP",
+              "undefined": 2000,
+              "undefined_reasons": {
+                "UNDEFINED_COMPONENT:CONSTANT_Y;CONSTANT_Y": 2000
+              },
+              "upper": null
+            }
+          },
+          "rho_sensitivity": {
+            "estimate": {
+              "reason": "CONSTANT_Y",
+              "value": null
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 0,
+              "defined_fraction": 0.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": null,
+              "required_defined": 1800,
+              "status": "NON_IDENTIFIABLE_BOOTSTRAP",
+              "undefined": 2000,
+              "undefined_reasons": {
+                "CONSTANT_Y": 2000
+              },
+              "upper": null
+            }
+          },
+          "rho_value": {
+            "estimate": {
+              "reason": "CONSTANT_Y",
+              "value": null
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 0,
+              "defined_fraction": 0.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": null,
+              "required_defined": 1800,
+              "status": "NON_IDENTIFIABLE_BOOTSTRAP",
+              "undefined": 2000,
+              "undefined_reasons": {
+                "CONSTANT_Y": 2000
+              },
+              "upper": null
+            }
+          }
+        },
+        "step": 300,
+        "tie_profiles": {
+          "S": {
+            "distinct": 1,
+            "duplicate_observations": 19,
+            "n": 20,
+            "smallest_distinct_gap": null,
+            "tie_groups": 1,
+            "tied_observations": 20,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_derivative": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 0.0011304363772688397,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_value": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 2.78760143511414e-06,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          }
+        }
+      },
+      {
+        "condition": "M1_16",
+        "inference": {
+          "caution": "positive Delta alone does not make two negative associations useful",
+          "point_sign": "positive",
+          "positive_error_associations": true,
+          "status": "INCONCLUSIVE"
+        },
+        "n": 20,
+        "role": "primary",
+        "statistics": {
+          "Delta_rho": {
+            "estimate": {
+              "reason": null,
+              "value": 0.006772010946414442
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": -0.056820354822762854,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.07906422683687651
+            }
+          },
+          "rho_sensitivity": {
+            "estimate": {
+              "reason": null,
+              "value": 0.9480815324980189
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.7925097075075871,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.9958287580319541
+            }
+          },
+          "rho_value": {
+            "estimate": {
+              "reason": null,
+              "value": 0.9413095215516044
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.7999657418348318,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.9882077749783503
+            }
+          }
+        },
+        "step": 3000,
+        "tie_profiles": {
+          "S": {
+            "distinct": 18,
+            "duplicate_observations": 2,
+            "n": 20,
+            "smallest_distinct_gap": 1.6836154475008414e-06,
+            "tie_groups": 2,
+            "tied_observations": 4,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_derivative": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 0.004029929461209947,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_value": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 2.040698601884442e-05,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          }
+        }
+      },
+      {
+        "condition": "M2_16",
+        "inference": {
+          "caution": "positive Delta alone does not make two negative associations useful",
+          "point_sign": "positive",
+          "positive_error_associations": true,
+          "status": "INCONCLUSIVE"
+        },
+        "n": 20,
+        "role": "secondary",
+        "statistics": {
+          "Delta_rho": {
+            "estimate": {
+              "reason": null,
+              "value": 0.04060150375939853
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": -0.004545454545454519,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.15668002317690835
+            }
+          },
+          "rho_sensitivity": {
+            "estimate": {
+              "reason": null,
+              "value": 0.9714285714285714
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.8817173311731248,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.9953394264982907
+            }
+          },
+          "rho_value": {
+            "estimate": {
+              "reason": null,
+              "value": 0.9308270676691729
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.7760220740919077,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.9908954684711944
+            }
+          }
+        },
+        "step": 3000,
+        "tie_profiles": {
+          "S": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 2.028980680320535e-06,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_derivative": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 0.0001820428047407674,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_value": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 3.7853248775984207e-06,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          }
+        }
+      },
+      {
+        "condition": "M1_32",
+        "inference": {
+          "caution": "positive Delta alone does not make two negative associations useful",
+          "point_sign": "positive",
+          "positive_error_associations": true,
+          "status": "INCONCLUSIVE"
+        },
+        "n": 20,
+        "role": "secondary",
+        "statistics": {
+          "Delta_rho": {
+            "estimate": {
+              "reason": null,
+              "value": 0.0045146739642761835
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": -0.048432141234325994,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.06257549922856179
+            }
+          },
+          "rho_sensitivity": {
+            "estimate": {
+              "reason": null,
+              "value": 0.9382997389087535
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.7547266189525841,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.9897078727144754
+            }
+          },
+          "rho_value": {
+            "estimate": {
+              "reason": null,
+              "value": 0.9337850649444773
+            },
+            "interval": {
+              "B": 2000,
+              "defined": 2000,
+              "defined_fraction": 1.0,
+              "interpretation": "percentiles conditional on defined empirical replicates",
+              "lower": 0.7694488962383175,
+              "required_defined": 1800,
+              "status": "DEFINED_ON_DEFINED_REPLICATES",
+              "undefined": 0,
+              "undefined_reasons": {},
+              "upper": 0.9836881369720646
+            }
+          }
+        },
+        "step": 3000,
+        "tie_profiles": {
+          "S": {
+            "distinct": 18,
+            "duplicate_observations": 2,
+            "n": 20,
+            "smallest_distinct_gap": 2.2634906068040583e-07,
+            "tie_groups": 2,
+            "tied_observations": 4,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_derivative": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 0.00475810175852609,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          },
+          "rmse_value": {
+            "distinct": 20,
+            "duplicate_observations": 0,
+            "n": 20,
+            "smallest_distinct_gap": 9.473122817972232e-06,
+            "tie_groups": 0,
+            "tied_observations": 0,
+            "ties_rule": "exact stored floating values; no rounding/isclose"
+          }
+        }
+      }
+    ],
+    "statistic_specs": [
+      {
+        "condition": "M1_16",
+        "id": "rho_value__M1_16@300",
+        "kind": "rho_value",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M1_16",
+        "id": "rho_sensitivity__M1_16@300",
+        "kind": "rho_sensitivity",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M1_16",
+        "id": "Delta_rho__M1_16@300",
+        "kind": "Delta_rho",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M2_16",
+        "id": "rho_value__M2_16@300",
+        "kind": "rho_value",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M2_16",
+        "id": "rho_sensitivity__M2_16@300",
+        "kind": "rho_sensitivity",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M2_16",
+        "id": "Delta_rho__M2_16@300",
+        "kind": "Delta_rho",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M1_32",
+        "id": "rho_value__M1_32@300",
+        "kind": "rho_value",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M1_32",
+        "id": "rho_sensitivity__M1_32@300",
+        "kind": "rho_sensitivity",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M1_32",
+        "id": "Delta_rho__M1_32@300",
+        "kind": "Delta_rho",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "baseline": "M1_16",
+        "condition": "M2_16",
+        "id": "mean_d_same_sites__300",
+        "kind": "paired_mean_S",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "baseline": "M1_32",
+        "condition": "M2_16",
+        "id": "mean_d_equal_label_budget_q1_1__300",
+        "kind": "paired_mean_S",
+        "role": "secondary",
+        "step": 300
+      },
+      {
+        "condition": "M1_16",
+        "id": "rho_value__M1_16@3000",
+        "kind": "rho_value",
+        "role": "primary",
+        "step": 3000
+      },
+      {
+        "condition": "M1_16",
+        "id": "rho_sensitivity__M1_16@3000",
+        "kind": "rho_sensitivity",
+        "role": "primary",
+        "step": 3000
+      },
+      {
+        "condition": "M1_16",
+        "id": "Delta_rho__M1_16@3000",
+        "kind": "Delta_rho",
+        "role": "primary",
+        "step": 3000
+      },
+      {
+        "condition": "M2_16",
+        "id": "rho_value__M2_16@3000",
+        "kind": "rho_value",
+        "role": "secondary",
+        "step": 3000
+      },
+      {
+        "condition": "M2_16",
+        "id": "rho_sensitivity__M2_16@3000",
+        "kind": "rho_sensitivity",
+        "role": "secondary",
+        "step": 3000
+      },
+      {
+        "condition": "M2_16",
+        "id": "Delta_rho__M2_16@3000",
+        "kind": "Delta_rho",
+        "role": "secondary",
+        "step": 3000
+      },
+      {
+        "condition": "M1_32",
+        "id": "rho_value__M1_32@3000",
+        "kind": "rho_value",
+        "role": "secondary",
+        "step": 3000
+      },
+      {
+        "condition": "M1_32",
+        "id": "rho_sensitivity__M1_32@3000",
+        "kind": "rho_sensitivity",
+        "role": "secondary",
+        "step": 3000
+      },
+      {
+        "condition": "M1_32",
+        "id": "Delta_rho__M1_32@3000",
+        "kind": "Delta_rho",
+        "role": "secondary",
+        "step": 3000
+      },
+      {
+        "baseline": "M1_16",
+        "condition": "M2_16",
+        "id": "mean_d_same_sites__3000",
+        "kind": "paired_mean_S",
+        "role": "central_comparison",
+        "step": 3000
+      },
+      {
+        "baseline": "M1_32",
+        "condition": "M2_16",
+        "id": "mean_d_equal_label_budget_q1_1__3000",
+        "kind": "paired_mean_S",
+        "role": "central_comparison",
+        "step": 3000
+      }
+    ]
+  },
+  "schema_version": 1,
+  "status": "ANALYSIS_COMPLETED",
+  "technical_conventions": {
+    "bootstrap_matrix": "one local random.Random(20262000), 2000 rows of 20 randrange(20); entire seed blocks retained with duplicates",
+    "central_contrasts": "paired mean S_M2_16-S_M1_16 and S_M2_16-S_M1_32 at 3000; counterparts at300 secondary",
+    "coherence_abs": 1e-12,
+    "coherence_rel": 1e-10,
+    "coherence_scope": "D and S arithmetic consistency, not total physical or floating error",
+    "correlations": "signed Pearson correlation of mean ranks; no absolute correlation",
+    "dispersion": "sample standard deviation with denominator n-1, plus quartiles and IQR",
+    "minimum_defined": 1800,
+    "paired_RMSE_contrasts": "not explicitly prescribed; not added",
+    "primary_panel": "M1_16 at 3000, n=20",
+    "quantile": "type7, linear interpolation at (m-1)*q; q=0.025/0.975; defined replicates only",
+    "rank_ties": "exact stored floats; mean ranks; no rounding/isclose/jitter",
+    "secondary_intervals": "exploratory; no simultaneous 95% guarantee",
+    "secondary_panels": "remaining five condition/stage panels, separately",
+    "seed_csv": "120 rows in long format, six measurements within each of twenty seed blocks; explicit condition/step columns",
+    "undefined": "null/empty numeric cells plus explicit reasons; never zero"
+  }
+}
