@@ -1,15 +1,16 @@
 # Neural approximation and optimization of a thermal decision
 
 **Mhamed Halhoul**  
+Université Abdelmalek Essaâdi  
 Faculté Polydisciplinaire de Larache  
 M2 — *Modélisation mathématique et applications et apprentissages*  
 Master's degree in progress.  
 Module : Algorithmes métaheuristiques  
-Enseignant du module : Pr. Jamal Daoudi
+Professeur encadrant : Pr. Jamal Daoudi
 
 This mini-project connects neural approximation, input sensitivities and physical decision quality on a fixed, dimensionless thermal benchmark. The saved numerical study is complete.
 
-**PDF status.** The corrected report (16 pages) and presentation (14 slides) display the full academic identity above. They have been rebuilt and visually reviewed in a separate TeX Live environment. The four vector figures are unchanged. All six current PDFs have undergone extracted-text, metadata and accessible decoded-content review. The Windows compiler restriction remains unresolved; this documentary reconstruction does not establish that the local Windows build works.
+**PDF status.** This academic edition contains a 17-page report, with a separate institutional cover, and a redesigned 14-slide presentation. Both display Université Abdelmalek Essaâdi, Faculté Polydisciplinaire de Larache, the official institutional logos and the supervisor Pr. Jamal Daoudi. The mathematical report body and the four vector figures are unchanged. The documents were rebuilt and visually reviewed in a separate TeX Live environment; accessible PDF text, metadata and decoded contents were checked. This does not establish that the local Windows document build works.
 
 ## Results
 
@@ -26,7 +27,7 @@ The score S is the mean of three raw physical cost differences against a floatin
 
 ## Saved scientific material
 
-- [French report PDF](report/main.pdf) and [LaTeX source](report/main.tex), with the [explicit bibliography](report/references.tex). The current 16-page PDF displays the corrected academic identity.
+- [French report PDF](report/main.pdf) and [LaTeX source](report/main.tex), with the [explicit bibliography](report/references.tex). The current 17-page PDF displays the corrected academic identity.
 - [French 16:9 presentation PDF](slides/main.pdf) and [Beamer source](slides/main.tex). The current 14-slide PDF displays the corrected academic identity.
 - Vector figures: [learned curves](report/figures/learned_curves.pdf), [error and decision](report/figures/error_decision.pdf), [paired scores](report/figures/paired_scores.pdf), [paired effects](report/figures/paired_effects.pdf). Editable figure sources are in `report/figures/`.
 - Sealed presentation data: [learned curves](report/data/learned_curves.csv), [primary panel](report/data/primary_panel.csv), [paired scores](report/data/paired_scores.csv), [paired effects](report/data/paired_effects.csv).
@@ -46,13 +47,13 @@ Diagnostics use 257 held-out sites. Decisions use the saved seven tasks and a 10
 
 ## Reproducibility and publication scope
 
-The numerical implementation uses standalone CPython 3.11.9 and the standard library. Mathematical primitives, derivatives, optimizer continuation, integration and statistics were verified in separate phases. The publication-specific validation passed all 161 tests across the ten historical modules under CPython 3.11.9 with -I -S -B, with zero errors, failures or skips. These tests execute analytic checks and deterministic or synthetic fixtures; they do not establish a complete campaign reproduction or multi-platform numerical reproduction.
+The numerical implementation uses standalone CPython 3.11.9 and the standard library. Mathematical primitives, derivatives, optimizer continuation, integration and statistics were verified in separate phases. The initial-publication validation at commit `8b6851bd9a88cbfd755dc30316b42ee574260fca` passed all 161 tests across the ten historical modules under CPython 3.11.9 with -I -S -B, with zero errors, failures or skips. These tests execute analytic checks and deterministic or synthetic fixtures; they do not establish a complete campaign reproduction or multi-platform numerical reproduction.
 
 The report appendix describes the mathematical assumptions and saved-data workflow. Documentary reconstruction reads the four sealed CSVs: build the four standalone figure sources first, then the report and Beamer sources. It requires an existing compatible TeX environment and a review of the resulting PDFs; it does not require training or new physical labels.
 
 The mean method contrasts favor M2 within this benchmark. The stronger sensitivity-association hypothesis remains inconclusive. Uniform-error and regret bounds require their mathematical hypotheses; discrete diagnostics and floating references do not provide a rigorous numerical certificate.
 
-This repository supplies a reproduction recipe and explicitly identified scientific exports. The six PDFs were reviewed through extracted page text, metadata, bookmarks, annotations and accessible decoded streams. The complete publication test report passed the data/source/report gate for the current code and recipe hashes. End-to-end campaign reproduction remains unverified.
+This repository supplies a reproduction recipe and explicitly identified scientific exports. The six PDFs were reviewed through extracted page text, metadata, bookmarks, annotations and accessible decoded streams. The initial-publication test report passed the data/source/report gate for that version. This documentary edition changes the build-input list to include both logos; the numerical code, test sources and configuration are unchanged. A new matching test report is required before any future campaign, since the administrative script fingerprint has changed. End-to-end campaign reproduction remains unverified.
 
 One future extension is proposed: transfer this diagnostic protocol to another physical case with explicitly measured value/derivative acquisition costs. It has not been executed.
 
@@ -73,3 +74,5 @@ Repository: [halhoulmhamed-droid/nn-optimization-benchmark](https://github.com/h
 ## License
 
 Licensed under the [MIT License](LICENSE). Copyright (c) 2026 Mhamed Halhoul.
+
+The institutional marks in `assets/logos/` are excluded from this MIT grant. Their official sources and academic use are documented in [the logo provenance note](assets/logos/SOURCES.md).

@@ -7,7 +7,7 @@ import subprocess
 import sys
 ROOT=Path(__file__).resolve().parents[1]
 FIGURES=("learned_curves","error_decision","paired_scores","paired_effects")
-INPUTS=("report/main.tex","report/references.tex","slides/main.tex",*("report/figures/"+n+".tex" for n in FIGURES),
+INPUTS=("report/main.tex","report/references.tex","slides/main.tex","assets/logos/uae.png","assets/logos/fpl.png",*("report/figures/"+n+".tex" for n in FIGURES),
         *("report/data/"+n+".csv" for n in ("learned_curves","primary_panel","paired_scores","paired_effects")))
 def main():
     parser=argparse.ArgumentParser(description=__doc__)

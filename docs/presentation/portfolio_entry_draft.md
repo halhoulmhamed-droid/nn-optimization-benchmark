@@ -3,11 +3,12 @@
 ## Neural approximation and optimization of a thermal decision
 
 **Mhamed Halhoul**  
+Université Abdelmalek Essaâdi  
 Faculté Polydisciplinaire de Larache  
 M2 — *Modélisation mathématique et applications et apprentissages*  
 Master's degree in progress.  
 Module : Algorithmes métaheuristiques  
-Enseignant du module : Pr. Jamal Daoudi
+Professeur encadrant : Pr. Jamal Daoudi
 
 **Question.** How do value and physical-input sensitivity errors relate to the quality of a decision made using a neural surrogate?
 
@@ -27,6 +28,6 @@ Enseignant du module : Pr. Jamal Daoudi
 - [Saved seed data](../../results/analysis/phase3c_seed_statistics.csv), [primary panel](../../report/data/primary_panel.csv), [paired scores](../../report/data/paired_scores.csv) and [paired effects with archived intervals](../../report/data/paired_effects.csv).
 - [Thermal oracle](../../src/thermal_oracle.py), [scalar network](../../src/neural_surrogate.py), [analytic parameter gradients](../../src/neural_gradients.py) and [losses](../../src/surrogate_losses.py).
 
-**PDF and publication status.** The corrected [report PDF](../../report/main.pdf) (16 pages) and [slide PDF](../../slides/main.pdf) (14 slides) have been rebuilt and visually reviewed with the academic identity above. The four vector figures are unchanged, and all six current PDFs have undergone extracted-text, metadata and accessible decoded-content review. The Windows compiler restriction remains unresolved. The portable public recipe and the selection of scientific metadata still need to be finalized. Public repository and portfolio URLs are not confirmed; no publication or site integration has taken place. Local provenance remains private.
+**PDF and publication status.** The [project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark) is public. This academic edition supplies a corrected [report PDF](../../report/main.pdf) (17 pages) and a redesigned [slide PDF](../../slides/main.pdf) (14 slides), with the full academic identity, official institutional logos and supervisor shown above. The report body, figures, data and numerical code are preserved. The document recipe includes the logos. Portfolio integration is a separate site update and is not performed by this documentary revision. Local provenance remains private.
 
 One optional future extension: assess transfer to another physical case with measured label costs. It remains unexecuted.

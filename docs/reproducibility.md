@@ -2,9 +2,13 @@
 
 This repository contains a scientific copy of the saved thermal benchmark. The original study used CPython 3.11.9 and the standard library. The adapters have been reviewed by source inspection, Python syntax parsing, file identities and bounded administrative checks on CPython 3.12.14. Help, the two saved-file inspection modes and model/CSV consistency have been checked. That preceding administrative review reran no campaign, saved-data statistical analysis, historical numerical test suite or document build. The publication-specific validation passed all 161 tests in the ten historical modules with CPython 3.11.9 and -I -S -B, with zero errors, failures or skips; the complete report passed test_gate. Both saved-file inspection commands also passed in this publication validation. The preceding plan-only dry-run was conformant. Numerical commands require CPython 3.11.9; cross-platform numerical reproduction remains unverified.
 
+## Academic document edition
+
+The initial-publication numerical validation belongs to commit `8b6851bd9a88cbfd755dc30316b42ee574260fca`. The academic revision adds a separate report cover, redesigns the slides, corrects the supervisor label and university name, and includes the official logos. Only the document-build script input list changes among Python files. All numerical modules, test sources, configuration, saved results and figure files remain identical. The 161 numerical tests have not been rerun for this documentary edition. Because the build script contributes to source_hashes, the earlier ignored test report cannot authorize a future campaign for this revision; run fresh checks in a new reproduction directory before any future numerical campaign or analysis. No such campaign or analysis accompanies this document revision.
+
 ## Read the saved work
 
-Read the [report](../report/main.pdf), its [source](../report/main.tex), the [slides](../slides/main.pdf) and their [source](../slides/main.tex). The report has 16 pages and the presentation 14 slides. All six saved PDFs have been checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The complete visual review from their delivery is retained; no PDF was edited or rebuilt in this review. The scan does not include OCR of raster pixels or establish how the work was authored.
+Read the [report](../report/main.pdf), its [source](../report/main.tex), the [slides](../slides/main.pdf) and their [source](../slides/main.tex). The report has 17 physical pages, including its separate institutional cover, and the presentation has 14 slides. All six saved PDFs have been checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The two principal PDFs were rebuilt for this academic edition and their rendered pages were reviewed. The four vector-figure PDFs are identical to the initial-publication edition. The mathematical report body is preserved. The scan does not include OCR of raster pixels or establish how the work was authored.
 
 From the project root, the first proposed command reads and verifies saved files only:
 
@@ -27,7 +31,7 @@ An explicit future build requires an already installed compatible pdfLaTeX/TeX L
 python -I -S -B scripts/build_presentation.py --build --output reproductions/documents-01
 ```
 
-It copies the document inputs to that new directory, builds the four standalone figures first, then the report and slides with two main passes. Its working directories are report/figures/, report/ and slides/ inside the new output. The compiler commands use -interaction=nonstopmode, -halt-on-error and -no-shell-escape. No numeric export, model evaluation or statistical recomputation is needed. Review citations/labels, logs, every report page and slide and all four figures before calling a future build reviewed. The saved PDFs are not overwritten.
+It copies the document inputs and both institutional PNG logos to that new directory, builds the four standalone figures first, then the report and slides with two main passes. Its working directories are report/figures/, report/ and slides/ inside the new output. The compiler commands use -interaction=nonstopmode, -halt-on-error and -no-shell-escape. No numeric export, model evaluation or statistical recomputation is needed. Review citations/labels, logs, every report page and slide and all four figures before calling a future build reviewed. The saved PDFs are not overwritten.
 
 ## Future numerical checks and campaign
 
@@ -81,7 +85,7 @@ One unexecuted future extension is to transfer the diagnostic protocol to anothe
 
 ## Interfaces and remaining review
 
-All scripts show help without arguments and run no experiment implicitly. The source of each CLI defines the options above. Public loaders enforce the selected file identities, exact task/seed/model identities and saved model/CSV consistency. Data, source and complete-test contracts are explicit; no tolerance, architecture, optimization step, selector or rank/bootstrap computation was changed.
+All scripts show help without arguments and run no experiment implicitly. The source of each CLI defines the options above. Public loaders enforce the selected file identities, exact task/seed/model identities and saved model/CSV consistency. Logo provenance and MIT exclusions are in [assets/logos/SOURCES.md](../assets/logos/SOURCES.md). Data, source and complete-test contracts are explicit; no tolerance, architecture, optimization step, selector or rank/bootstrap computation was changed.
 
 The preceding administrative review executed no research campaign, statistical recomputation, physical oracle, network evaluation or document compilation. The publication-specific CPython 3.11.9 validation did execute the ten-module, 161-test suite, including analytic/derivative checks, physical-reference unit checks and small deterministic or synthetic optimization, continuation, integration and statistical fixtures. No research campaign, saved-result bootstrap, new campaign M0 reference or document compilation was performed. Publication preparation does not update any portfolio. The combined numerical checks are validated on this runtime; portable end-to-end campaign reproduction and numerical reproduction on multiple platforms remain unverified. This NN repository is provided under the [MIT License](../LICENSE).
 
