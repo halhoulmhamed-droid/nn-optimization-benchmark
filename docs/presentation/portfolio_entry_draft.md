@@ -2,6 +2,8 @@
 
 ## Neural approximation and optimization of a thermal decision
 
+**Projet scientifique de Master — Scientific Master's project.**
+
 **Mhamed Halhoul**  
 Université Abdelmalek Essaâdi  
 Faculté Polydisciplinaire de Larache  
@@ -28,6 +30,8 @@ Professeur encadrant : Pr. Jamal Daoudi
 - [Saved seed data](../../results/analysis/phase3c_seed_statistics.csv), [primary panel](../../report/data/primary_panel.csv), [paired scores](../../report/data/paired_scores.csv) and [paired effects with archived intervals](../../report/data/paired_effects.csv).
 - [Thermal oracle](../../src/thermal_oracle.py), [scalar network](../../src/neural_surrogate.py), [analytic parameter gradients](../../src/neural_gradients.py) and [losses](../../src/surrogate_losses.py).
 
-**PDF and publication status.** The [project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark) is public. This academic edition supplies a corrected [report PDF](../../report/main.pdf) (17 pages) and a redesigned [slide PDF](../../slides/main.pdf) (14 slides), with the full academic identity, official institutional logos and supervisor shown above. The report body, figures, data and numerical code are preserved. The document recipe includes the logos. Portfolio integration is a separate site update and is not performed by this documentary revision. Local provenance remains private.
+**PDF and publication status.** The [project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark) is public. The accompanying document edition supplies a corrected [report PDF](../../report/main.pdf) (17 pages) and a redesigned [slide PDF](../../slides/main.pdf) (14 slides), with the full academic identity, official institutional logos and supervisor shown above. The report body, figures, data and numerical code are preserved. The document recipe includes the logos. Portfolio integration is a separate site update and is not performed by this documentary revision. Local provenance remains private.
+
+**Project terminology edition.** The accompanying report and presentation now use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
 
 One optional future extension: assess transfer to another physical case with measured label costs. It remains unexecuted.

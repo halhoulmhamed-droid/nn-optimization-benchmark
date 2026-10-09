@@ -1,5 +1,5 @@
 {
-  "PDF_review": "Two revised principal PDFs: all rendered pages checked; page text, metadata, bookmarks, annotations and accessible decoded streams reviewed. Four unchanged vector-figure PDFs retain their delivery review. No raster OCR or authorship inference.",
+  "PDF_review": "Two principal PDFs rebuilt for the project terminology edition: all 31 rendered pages reviewed. Six saved PDFs checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The four vector-figure PDFs are unchanged and their rendered pages were also reviewed. No raster OCR or authorship inference.",
   "files": {
     ".gitattributes": {
       "bytes": 8,
@@ -14,8 +14,8 @@
       "sha256": "BBF1160079896FA7A96A6A6745810763C725877BD51BAD936759510AB5F2B5A4"
     },
     "README.md": {
-      "bytes": 8577,
-      "sha256": "F412C9A98A6BC57CE4401AED80D921340131E9FF35B2C591E0BABE605317158D"
+      "bytes": 9036,
+      "sha256": "4A8D0A1A2A54CC50871816EBA17E8022CFDE0FC0BA1172F3BBBFB4827CD268A9"
     },
     "assets/logos/SOURCES.md": {
       "bytes": 795,
@@ -42,12 +42,12 @@
       "sha256": "60C2BC8B4DCAF4ED9135F5CD2B6730C2DE202A2C5BE4E5C081009DDF373E540E"
     },
     "docs/presentation/portfolio_entry_draft.md": {
-      "bytes": 3801,
-      "sha256": "1C33E23E498E6FC59786AE0600727AC10587E7A87D3167CDACEDBA995D4C5571"
+      "bytes": 4277,
+      "sha256": "A4AE190516064A1A0CD4B6F42FB45C7969254A01AD9C209BA37424FEC75A9A62"
     },
     "docs/reproducibility.md": {
-      "bytes": 12677,
-      "sha256": "67335B62135715B31F6132174109DFD199FCFEFAA22243FE33F351045F485245"
+      "bytes": 13209,
+      "sha256": "48B63D632B234021843D2439A921867C4CA1A0477DB5A7FB38121A316ED15C1B"
     },
     "report/data/learned_curves.csv": {
       "bytes": 45484,
@@ -98,12 +98,12 @@
       "sha256": "83BE3AFBD3D58E9580C91BB3D26C4D471BEC11C96E97BD2F07DFC78051A9198A"
     },
     "report/main.pdf": {
-      "bytes": 1332473,
-      "sha256": "88B94FE8662E63D16CD267F1E638349AD9FA837D8B3E54A900ADA22591937795"
+      "bytes": 1333284,
+      "sha256": "1996A08A8353C6BF01F3346420B81CAC9FC0F4B32650906C55B8BF0405DE1278"
     },
     "report/main.tex": {
-      "bytes": 33776,
-      "sha256": "0E791E3C12FA341A1647B8CB2CE66C63CF6EF258010F80F822CA0A1FAD8C5427"
+      "bytes": 33887,
+      "sha256": "0D6D15E4DBDE92B3029F39729B04C6A0D7924268E2CA1DDE2839D54C47CBFD47"
     },
     "report/references.tex": {
       "bytes": 1332,
@@ -182,12 +182,12 @@
       "sha256": "B34D72620834266D1C173D8B799984CDFC184D871586370AD46EE1BF41F3657C"
     },
     "slides/main.pdf": {
-      "bytes": 1324484,
-      "sha256": "5C30BD49D8ABD24FA6B7750EC53B67EB17305A15F4F0C1CF65E6D38A013B698C"
+      "bytes": 1324661,
+      "sha256": "B4CFCAE2A280A895FE92189782957A86C3C132A29711033B977871F612AD33EC"
     },
     "slides/main.tex": {
-      "bytes": 15358,
-      "sha256": "F2B0E79A14BE84B24517CE52E64F4A57475D5FFDF968ED063C7A5163E2EC7532"
+      "bytes": 15374,
+      "sha256": "1FB87A15C27773F1DC0F306D19EF4CF3BF288BBE1F66C0DE7569529B9F69EB9A"
     },
     "src/neural_gradients.py": {
       "bytes": 3528,

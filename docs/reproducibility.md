@@ -4,11 +4,13 @@ This repository contains a scientific copy of the saved thermal benchmark. The o
 
 ## Academic document edition
 
+**Project terminology edition.** The accompanying report and presentation now use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
+
 The initial-publication numerical validation belongs to commit `8b6851bd9a88cbfd755dc30316b42ee574260fca`. The academic revision adds a separate report cover, redesigns the slides, corrects the supervisor label and university name, and includes the official logos. Only the document-build script input list changes among Python files. All numerical modules, test sources, configuration, saved results and figure files remain identical. The 161 numerical tests have not been rerun for this documentary edition. Because the build script contributes to source_hashes, the earlier ignored test report cannot authorize a future campaign for this revision; run fresh checks in a new reproduction directory before any future numerical campaign or analysis. No such campaign or analysis accompanies this document revision.
 
 ## Read the saved work
 
-Read the [report](../report/main.pdf), its [source](../report/main.tex), the [slides](../slides/main.pdf) and their [source](../slides/main.tex). The report has 17 physical pages, including its separate institutional cover, and the presentation has 14 slides. All six saved PDFs have been checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The two principal PDFs were rebuilt for this academic edition and their rendered pages were reviewed. The four vector-figure PDFs are identical to the initial-publication edition. The mathematical report body is preserved. The scan does not include OCR of raster pixels or establish how the work was authored.
+Read the [report](../report/main.pdf), its [source](../report/main.tex), the [slides](../slides/main.pdf) and their [source](../slides/main.tex). The report has 17 physical pages, including its separate institutional cover, and the presentation has 14 slides. All six saved PDFs have been checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The two principal PDFs were rebuilt for this project terminology edition and their rendered pages were reviewed. The four vector-figure PDFs are identical to the initial-publication edition. The mathematical report body is preserved. The scan does not include OCR of raster pixels or establish how the work was authored.
 
 From the project root, the first proposed command reads and verifies saved files only:
 
@@ -23,7 +25,7 @@ See the [data dictionary](data_dictionary.md), [public recipe](../configs/replic
 
 ## Rebuild the documents
 
-The seven TeX sources, bibliography and four existing CSVs are retained unchanged. The original documentary delivery used a separate compatible TeX Live environment. The former Windows application-control restriction remains historical and unresolved; this recipe neither changes nor bypasses it.
+The seven editable TeX sources, bibliography and four existing CSVs are included. The report and slide sources carry the current project wording; the four figure sources, bibliography and CSVs are unchanged. The original documentary delivery used a separate compatible TeX Live environment. The former Windows application-control restriction remains historical and unresolved; this recipe neither changes nor bypasses it.
 
 An explicit future build requires an already installed compatible pdfLaTeX/TeX Live, article, Beamer, standalone, PGFPlots/pgfplotstable, Latin Modern and French Babel. The script installs nothing:
 

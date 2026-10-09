@@ -1,5 +1,7 @@
 # Neural approximation and optimization of a thermal decision
 
+**Projet scientifique de Master — Scientific Master's project.**
+
 **Mhamed Halhoul**  
 Université Abdelmalek Essaâdi  
 Faculté Polydisciplinaire de Larache  
@@ -8,9 +10,11 @@ Master's degree in progress.
 Module : Algorithmes métaheuristiques  
 Professeur encadrant : Pr. Jamal Daoudi
 
-This mini-project connects neural approximation, input sensitivities and physical decision quality on a fixed, dimensionless thermal benchmark. The saved numerical study is complete.
+This project connects neural approximation, input sensitivities and physical decision quality on a fixed, dimensionless thermal benchmark. The saved numerical study is complete.
 
-**PDF status.** This academic edition contains a 17-page report, with a separate institutional cover, and a redesigned 14-slide presentation. Both display Université Abdelmalek Essaâdi, Faculté Polydisciplinaire de Larache, the official institutional logos and the supervisor Pr. Jamal Daoudi. The mathematical report body and the four vector figures are unchanged. The documents were rebuilt and visually reviewed in a separate TeX Live environment; accessible PDF text, metadata and decoded contents were checked. This does not establish that the local Windows document build works.
+**PDF status.** This document edition contains a 17-page report, with a separate institutional cover, and a redesigned 14-slide presentation. Both display Université Abdelmalek Essaâdi, Faculté Polydisciplinaire de Larache, the official institutional logos and the supervisor Pr. Jamal Daoudi. The mathematical report body and the four vector figures are unchanged. The documents were rebuilt and visually reviewed in a separate TeX Live environment; accessible PDF text, metadata and decoded contents were checked. This does not establish that the local Windows document build works.
+
+**Project terminology edition.** The accompanying report and presentation now use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
 
 ## Results
 
