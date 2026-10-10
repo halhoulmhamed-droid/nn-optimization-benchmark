@@ -44,7 +44,7 @@
 \setbeamertemplate{footline}{%
   \begin{beamercolorbox}[wd=\paperwidth,ht=0.36cm,dp=0.12cm,leftskip=0.7cm,rightskip=0.7cm]{footline}
   \fontsize{6.5}{8}\selectfont
-  Mhamed Halhoul\hfill\sectionlabel\hfill\insertframenumber\,/\,\inserttotalframenumber
+  Halhoul Mhamed\hfill\sectionlabel\hfill\insertframenumber\,/\,\inserttotalframenumber
   \end{beamercolorbox}}
 \newcommand{\Mone}{\texttt{M1\_16}}
 \newcommand{\Mtwo}{\texttt{M2\_16}}
@@ -57,9 +57,12 @@
   \begin{beamercolorbox}[wd=\linewidth,sep=7pt]{takeaway}
   \small\textbf{#1}\ #2
   \end{beamercolorbox}}
+\newcommand{\provenance}[1]{\par{\scriptsize\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md\#f#1}{Provenance F#1}}\par}
 \newcommand{\chart}[2]{\centering\includegraphics[width=\linewidth,height=#2cm,keepaspectratio]{../report/figures/#1.pdf}\par}
+\title{Approximation neuronale et optimisation d'une décision thermique}
+\author{Halhoul Mhamed}
 \hypersetup{pdftitle={Approximation neuronale et optimisation d'une décision thermique},
- pdfauthor={Mhamed Halhoul},pdfsubject={Projet scientifique de Master : réseaux de neurones pour l'apprentissage et l'optimisation}}
+ pdfauthor={Halhoul Mhamed},pdfsubject={Projet scientifique de Master : réseaux de neurones pour l'apprentissage et l'optimisation}}
 \begin{document}
 \setlength{\abovedisplayskip}{6pt}
 \setlength{\belowdisplayskip}{6pt}
@@ -94,7 +97,7 @@
 \node[anchor=north west,text=white!75,font=\fontsize{8}{10}\selectfont]
  at ([xshift=0.74cm,yshift=2.13cm]current page.south west) {RÉALISÉ PAR};
 \node[anchor=north west,text=white,font=\fontsize{14}{17}\selectfont\bfseries]
- at ([xshift=0.74cm,yshift=1.67cm]current page.south west) {Mhamed Halhoul};
+ at ([xshift=0.74cm,yshift=1.67cm]current page.south west) {Halhoul Mhamed};
 \node[anchor=north west,text=white!75,font=\fontsize{8}{10}\selectfont]
  at ([xshift=9.15cm,yshift=2.13cm]current page.south west) {PROFESSEUR ENCADRANT :};
 \node[anchor=north west,text=white,font=\fontsize{14}{17}\selectfont\bfseries]
@@ -102,7 +105,7 @@
 \node[anchor=west,text=white!75,font=\fontsize{7.5}{9}\selectfont]
  at ([xshift=0.74cm,yshift=0.48cm]current page.south west) {Année universitaire 2026--2027};
 \node[anchor=east,text=white!75,font=\fontsize{7.5}{9}\selectfont]
- at ([xshift=-0.74cm,yshift=0.48cm]current page.south east) {1\,/\,14};
+ at ([xshift=-0.74cm,yshift=0.48cm]current page.south east) {\insertframenumber\,/\,\inserttotalframenumber};
 \end{tikzpicture}
 \end{frame}
 
@@ -240,14 +243,16 @@ Aucune convexité du réseau supposée.
 \renewcommand{\sectionlabel}{05 / Résultats}
 \begin{frame}[t]{Une graine illustre la difficulté}
 \framesubtitle{Graine 20262001 ; étape 3000 ; trois modèles sauvegardés ; 257 sites}
-\chart{learned_curves}{4.80}
+\chart{learned_curves}{4.70}
+\provenance{1}
 \vfill
 \takeaway{Pour cette graine :}{M2 réduit les RMSE, mais son score décisionnel est légèrement plus élevé. Ce n'est pas une moyenne.}
 \end{frame}
 
 \begin{frame}[t]{Toutes les paires restent visibles}
 \framesubtitle{Vingt initialisations conservées ; deux comparaisons prévues}
-\chart{paired_scores}{4.60}
+\chart{paired_scores}{4.50}
+\provenance{2}
 \vspace{0.07cm}
 \centering\small
 $D=J_{\rm phys}(\widehat p)-J_{\rm phys}(p_{\rm ref})$,\quad
@@ -261,6 +266,7 @@ $S=\frac13\sum_{k\in\mathcal I}D_{\lambda_k}$.
 \begin{columns}[c,onlytextwidth]
 \begin{column}{0.57\textwidth}
 \chart{paired_effects}{3.85}
+\provenance{3}
 \end{column}
 \begin{column}{0.40\textwidth}
 \card{\Mtwo\ $-$ \Mone}{%
@@ -279,6 +285,7 @@ IC : $[-0.01390;-0.00503]$}
 \begin{frame}[t]{Erreur et mauvaise décision}
 \framesubtitle{Panel principal : M1\_16 à 3000 ; vingt points ; associations de rang}
 \chart{error_decision}{4.80}
+\provenance{4}
 \vfill
 \takeaway{Deux associations positives :}{l'IC de $\Delta\rho$ inclut zéro ; l'association supérieure des sensibilités reste inconclusive.}
 \end{frame}
@@ -345,5 +352,33 @@ Lecture bibliographique partielle. Archives : résultats 3B/3C, paramètres,
 contextes et exports CSV.
 \vfill
 \takeaway{Édition documentaire :}{aucun nouvel entraînement pour cette présentation.}
+\end{frame}
+\begin{frame}[t]{Sources et contact}
+\framesubtitle{Halhoul Mhamed ; édition documentaire du 9 octobre 2026}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.49\textwidth}
+\textbf{Sources vérifiables}\par\vspace{0.16cm}
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md}{Tableau complet F1--F4 et empreintes}\par\vspace{0.12cm}
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/194561b84e190d953f85d1f01281f0d758907a05/src/neural_surrogate.py}{Code du réseau}\quad
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/194561b84e190d953f85d1f01281f0d758907a05/report/data/learned_curves.csv}{CSV de l'illustration}\par\vspace{0.12cm}
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/194561b84e190d953f85d1f01281f0d758907a05/docs/reproducibility.md}{Recette à la base scientifique}\par\vspace{0.18cm}
+\textbf{Base scientifique scellée}\par
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/commit/194561b84e190d953f85d1f01281f0d758907a05}{\texttt{194561b84e19}}\par\vspace{0.12cm}
+\small Ce SHA est celui du code et des données ; il ne désigne pas le
+futur commit contenant les PDF reconstruits.
+\end{column}
+\begin{column}{0.47\textwidth}
+\textbf{Halhoul Mhamed}\par\vspace{0.18cm}
+\small Gmail\par
+\href{mailto:halhoulmhamed@gmail.com}{halhoulmhamed@gmail.com}\par\vspace{0.18cm}
+Adresse institutionnelle\par
+\href{mailto:halhoul.mhamed@etu.uae.ac.ma}{halhoul.mhamed@etu.uae.ac.ma}\par\vspace{0.18cm}
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark}{Dépôt GitHub du projet}\par\vspace{0.16cm}
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/report/main.pdf}{Rapport}\quad
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/slides/main.pdf}{Présentation}
+\end{column}
+\end{columns}
+\vfill
+\takeaway{Lecture des archives :}{aucune nouvelle expérience ; l'association supérieure des sensibilités reste inconclusive.}
 \end{frame}
 \end{document}

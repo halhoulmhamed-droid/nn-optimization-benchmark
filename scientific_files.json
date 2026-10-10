@@ -1,5 +1,5 @@
 {
-  "PDF_review": "Two principal PDFs rebuilt for the project terminology edition: all 31 rendered pages reviewed. Six saved PDFs checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The four vector-figure PDFs are unchanged and their rendered pages were also reviewed. No raster OCR or authorship inference.",
+  "PDF_review": "Author/contact/provenance edition prepared 2026-10-09; main documents rebuilt and reviewed 2026-10-10 with compatible TeX Live and no-shell-escape: 18 report pages and 15 slides, all 33 rendered pages inspected. Six saved PDFs checked through extracted page text, metadata, bookmark targets, annotations, object strings and accessible decoded streams. Four vector-figure PDFs unchanged and their embedded plots inspected. No raster OCR, scientific execution or authorship inference. Documentary publication pending. This seal excludes its own digest.",
   "files": {
     ".gitattributes": {
       "bytes": 8,
@@ -9,13 +9,17 @@
       "bytes": 188,
       "sha256": "2A3288793DE408368423B91F293950AE5063D426D4AD46009904ED0A41239E82"
     },
+    "CITATION.cff": {
+      "bytes": 555,
+      "sha256": "E503ECCCF314FA908DDF4DE11CC22D41C0173D00553FD9466C82D3F19DB4EBCE"
+    },
     "LICENSE": {
       "bytes": 1071,
       "sha256": "BBF1160079896FA7A96A6A6745810763C725877BD51BAD936759510AB5F2B5A4"
     },
     "README.md": {
-      "bytes": 9036,
-      "sha256": "4A8D0A1A2A54CC50871816EBA17E8022CFDE0FC0BA1172F3BBBFB4827CD268A9"
+      "bytes": 10269,
+      "sha256": "72D728000EA7E7B00C40D3D138046A9D0DF4AF9906D950EB9A82FF3B396BD2EE"
     },
     "assets/logos/SOURCES.md": {
       "bytes": 795,
@@ -37,17 +41,21 @@
       "bytes": 4575,
       "sha256": "601295477D53A23AC9BCB186DEB5C6AFE4C647E8FA8BC1DC8D5B658107B022CD"
     },
+    "docs/figure_provenance.md": {
+      "bytes": 14359,
+      "sha256": "4E383DB2339A952E486C88C5B4B5FE3FEE001BB5DB61FE116A91B6A889480821"
+    },
     "docs/math/lemmas_and_counterexamples.md": {
       "bytes": 2822,
       "sha256": "60C2BC8B4DCAF4ED9135F5CD2B6730C2DE202A2C5BE4E5C081009DDF373E540E"
     },
     "docs/presentation/portfolio_entry_draft.md": {
-      "bytes": 4277,
-      "sha256": "A4AE190516064A1A0CD4B6F42FB45C7969254A01AD9C209BA37424FEC75A9A62"
+      "bytes": 5032,
+      "sha256": "C66C79E32AD5098F25982847FC458BEB15978AF18E6737E66DD0AD66972B836F"
     },
     "docs/reproducibility.md": {
-      "bytes": 13209,
-      "sha256": "48B63D632B234021843D2439A921867C4CA1A0477DB5A7FB38121A316ED15C1B"
+      "bytes": 15701,
+      "sha256": "9D4EF2167707B02AEC58CB89FD45D0A5DAA42EB99694C90C460A99130B8F1CB2"
     },
     "report/data/learned_curves.csv": {
       "bytes": 45484,
@@ -98,12 +106,12 @@
       "sha256": "83BE3AFBD3D58E9580C91BB3D26C4D471BEC11C96E97BD2F07DFC78051A9198A"
     },
     "report/main.pdf": {
-      "bytes": 1333284,
-      "sha256": "1996A08A8353C6BF01F3346420B81CAC9FC0F4B32650906C55B8BF0405DE1278"
+      "bytes": 1338426,
+      "sha256": "5B41AC5D91AB20DC1D4E93194D57065A63F11782AB07C7CD714576B887FB3328"
     },
     "report/main.tex": {
-      "bytes": 33887,
-      "sha256": "0D6D15E4DBDE92B3029F39729B04C6A0D7924268E2CA1DDE2839D54C47CBFD47"
+      "bytes": 37649,
+      "sha256": "FD1288C1984715D2FC7B38C1AA188F3B3AE56999EB88E7C68BD77354031B17C5"
     },
     "report/references.tex": {
       "bytes": 1332,
@@ -182,12 +190,12 @@
       "sha256": "B34D72620834266D1C173D8B799984CDFC184D871586370AD46EE1BF41F3657C"
     },
     "slides/main.pdf": {
-      "bytes": 1324661,
-      "sha256": "B4CFCAE2A280A895FE92189782957A86C3C132A29711033B977871F612AD33EC"
+      "bytes": 1329955,
+      "sha256": "84A80F10170564B61CA6292FF718F901AB2862A173AD283B1A731D09F21DE09B"
     },
     "slides/main.tex": {
-      "bytes": 15374,
-      "sha256": "1FB87A15C27773F1DC0F306D19EF4CF3BF288BBE1F66C0DE7569529B9F69EB9A"
+      "bytes": 17829,
+      "sha256": "799CD8436F5540720318653B2D6C1660712A0783901087351476709CEB1ACE16"
     },
     "src/neural_gradients.py": {
       "bytes": 3528,

@@ -8,16 +8,17 @@
 \usepackage{amsmath,amssymb,mathtools,graphicx,booktabs,array,xcolor}
 \usepackage{microtype,hyperref,fancyhdr}
 \hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black,
-pdftitle={Approximation neuronale et optimisation d'une décision thermique},pdfauthor={Mhamed Halhoul},
+pdftitle={Approximation neuronale et optimisation d'une décision thermique},pdfauthor={Halhoul Mhamed},
 pdfsubject={Projet scientifique de Master : réseaux de neurones pour l'apprentissage et l'optimisation}}
 \pagestyle{fancy}\fancyhf{}
 \fancyhead[L]{\small Approximation neuronale et décision thermique}
-\fancyhead[R]{\small Mhamed Halhoul}\fancyfoot[C]{\thepage}
+\fancyhead[R]{\small Halhoul Mhamed}\fancyfoot[C]{\thepage}
 \setlength{\headheight}{14pt}\setlength{\parskip}{5pt}\setlength{\parindent}{0pt}
 \renewcommand{\arraystretch}{1.15}
 \newcommand{\Mone}{\texttt{M1\_16}}\newcommand{\Mtwo}{\texttt{M2\_16}}
 \newcommand{\Mthree}{\texttt{M1\_32}}\newcommand{\That}{\widehat T_\theta}
 \newcommand{\Jhat}{\widehat J_{\lambda,\theta}}
+\newcommand{\basefile}[2]{\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/194561b84e190d953f85d1f01281f0d758907a05/#1}{#2}}
 \newcommand{\fig}[3]{\begin{figure}[ht]\centering
 \includegraphics[width=#2\linewidth]{figures/#1.pdf}
 \caption{#3}\label{fig:#1}\end{figure}}
@@ -68,7 +69,7 @@ sur un benchmark analytique\par}
 \begin{minipage}[t]{0.45\linewidth}
 {\small\color{coverteal} Réalisé par\par}
 \vspace{0.12cm}
-{\large\bfseries Mhamed Halhoul\par}
+{\large\bfseries Halhoul Mhamed\par}
 \end{minipage}\hfill
 \begin{minipage}[t]{0.45\linewidth}
 \raggedleft
@@ -76,7 +77,9 @@ sur un benchmark analytique\par}
 \vspace{0.12cm}
 {\large\bfseries Pr. Jamal Daoudi\par}
 \end{minipage}
-\vspace{1.0cm}
+\par\vspace{0.35cm}
+{\small Édition documentaire du 9 octobre 2026\par}
+\vspace{0.6cm}
 \end{titlepage}
 \setcounter{page}{1}
 \hypersetup{pageanchor=true}
@@ -452,7 +455,7 @@ l'étape 300 reste secondaire.
 \label{sec:illustration}
 \fig{learned_curves}{0.98}{Valeur et sensibilité physique aux 257 sites diagnostiques.
 Illustration fixée : graine 20262001, étape 3000. La référence vient du cache 3B.
-Les segments relient les points, sans lissage ajouté.}
+Les segments relient les points, sans lissage ajouté. Provenance : \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md\#f1}{F1}.}
 \begin{center}
 \begin{tabular}{lrrr}
 \toprule
@@ -484,9 +487,9 @@ Elle est distincte des mesures de la campagne.
 \label{sec:contrastes}
 \fig{paired_scores}{0.88}{Vingt paires à 3000, toutes conservées.
 Une liaison représente une graine. À gauche : mêmes sites et dérivées
-supplémentaires ; à droite : coût de labels égal uniquement sous $q_1=1$.}
+supplémentaires ; à droite : coût de labels égal uniquement sous $q_1=1$. Provenance : \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md\#f2}{F2}.}
 \fig{paired_effects}{0.80}{Différences moyennes de $S$ et IC bootstrap percentiles
-à 95\,\%, $B=2000$, $n=20$ graines. Le signe négatif favorise M2.}
+à 95\,\%, $B=2000$, $n=20$ graines. Le signe négatif favorise M2. Provenance : \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md\#f3}{F3}.}
 \begin{center}\small
 \begin{tabular}{lrrr}
 \toprule
@@ -518,7 +521,7 @@ Elle révise explicitement la proposition historique sur le regret exact,
 sans sélection a posteriori de faibles erreurs de valeur.
 \fig{error_decision}{0.96}{Panel principal à 3000, $n=20$.
 Même échelle verticale dans les deux panneaux. Aucune régression ou
-combinaison avec les panels secondaires.}
+combinaison avec les panels secondaires. Provenance : \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md\#f4}{F4}.}
 \begin{center}
 \begin{tabular}{lrr}
 \toprule
@@ -777,6 +780,47 @@ Elle ne réévalue aucun réseau. Le contrôle documentaire est
 Le mode de construction exige un outil local existant et la vérification
 de ses options cache/hors ligne, sans apprentissage ou acquisition.
 
+\subsection*{Provenance des quatre figures}
+\begin{center}\small
+\begin{tabular}{@{}lp{4.4cm}p{3.5cm}p{4.8cm}@{}}
+\toprule
+ID & Objet et périmètre & Données & Archive correspondante\\
+\midrule
+F1 & Graine 20262001, étape 3000 ; 257 sites, trois réseaux &
+\basefile{report/data/learned_curves.csv}{Courbes sauvegardées} &
+\basefile{results/models/campaign_models.public.json}{États et 49 paramètres}\\
+F2 & Vingt paires de scores à 3000 &
+\basefile{report/data/paired_scores.csv}{Scores appariés} &
+\basefile{results/analysis/phase3c_seed_statistics.csv}{Blocs de graines}\\
+F3 & Deux contrastes moyens et IC archivés &
+\basefile{report/data/paired_effects.csv}{Contrastes et IC} &
+\basefile{results/analysis/phase3c_analysis.public.json}{Analyse sauvegardée}\\
+F4 & Panel M1\_16 à 3000, vingt points &
+\basefile{report/data/primary_panel.csv}{Panel principal} &
+\basefile{results/analysis/phase3c_analysis.public.json}{Associations archivées}\\
+\bottomrule
+\end{tabular}
+\end{center}
+Les sources PGFPlots lisent les CSV existants ; elles ne réévaluent pas
+les réseaux. Les paramètres de F1, les labels archivés, les champs des
+autres CSV et les empreintes ont été comparés par lecture. F1 provient
+de l'export historique limité à 771 évaluations, non rejoué ici ; sa graine
+n'est pas une moyenne des vingt graines. Le script public d'export ne
+fournit actuellement qu'un contrôle de lecture. Une correspondance
+d'archives ne démontre pas une nouvelle reproduction de l'expérience.
+
+Le \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/docs/figure_provenance.md}{tableau complet de provenance} donne
+les sources TeX, usages, identifiants de paramètres et SHA-256.
+Le \basefile{src/neural_surrogate.py}{code du réseau}, les
+\basefile{report/data/learned_curves.csv}{données de l'illustration} et la
+\basefile{docs/reproducibility.md}{recette à la base scientifique}
+sont accessibles par permaliens.
+
+\textbf{Base scientifique du code et des données :}
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/commit/194561b84e190d953f85d1f01281f0d758907a05}{\texttt{194561b84e190d953f85d1f01281f0d758907a05}}.
+Ce SHA désigne la base scellée, pas le futur commit documentaire contenant
+les nouveaux PDF. Édition des sources : 9 octobre 2026.
+
 \subsection*{Niveaux de lecture}
 \emph{Sobolev Training} : résumé et section 2 lus.
 Le FNO informé par dérivées est une prépublication, avec lecture sélective
@@ -788,4 +832,14 @@ Aucune preuve ou implémentation de ces travaux n'est auditée intégralement.
 Les preuves de ce rapport sont les arguments autonomes classiques
 du dossier mathématique local.
 \input{references.tex}
+
+\section*{Contacts}
+\textbf{Halhoul Mhamed}.\par
+Gmail : \href{mailto:halhoulmhamed@gmail.com}{halhoulmhamed@gmail.com}.\par
+Adresse institutionnelle :
+\href{mailto:halhoul.mhamed@etu.uae.ac.ma}{halhoul.mhamed@etu.uae.ac.ma}.\par
+Dépôt du projet : \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark}{halhoulmhamed-droid/nn-optimization-benchmark}.\par
+Les \href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/report/main.pdf}{PDF du rapport} et
+\href{https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/blob/main/slides/main.pdf}{des diapositives} seront ceux
+du commit documentaire vérifié après reconstruction et publication.
 \end{document}

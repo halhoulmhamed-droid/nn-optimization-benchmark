@@ -4,13 +4,15 @@
 
 **Projet scientifique de Master — Scientific Master's project.**
 
-**Mhamed Halhoul**  
+**Halhoul Mhamed**\
 Université Abdelmalek Essaâdi  
 Faculté Polydisciplinaire de Larache  
 M2 — *Modélisation mathématique et applications et apprentissages*  
 Master's degree in progress.  
 Module : Algorithmes métaheuristiques  
 Professeur encadrant : Pr. Jamal Daoudi
+
+Academic year: 2026–2027.
 
 **Question.** How do value and physical-input sensitivity errors relate to the quality of a decision made using a neural surrogate?
 
@@ -30,8 +32,12 @@ Professeur encadrant : Pr. Jamal Daoudi
 - [Saved seed data](../../results/analysis/phase3c_seed_statistics.csv), [primary panel](../../report/data/primary_panel.csv), [paired scores](../../report/data/paired_scores.csv) and [paired effects with archived intervals](../../report/data/paired_effects.csv).
 - [Thermal oracle](../../src/thermal_oracle.py), [scalar network](../../src/neural_surrogate.py), [analytic parameter gradients](../../src/neural_gradients.py) and [losses](../../src/surrogate_losses.py).
 
-**PDF and publication status.** The [project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark) is public. The accompanying document edition supplies a corrected [report PDF](../../report/main.pdf) (17 pages) and a redesigned [slide PDF](../../slides/main.pdf) (14 slides), with the full academic identity, official institutional logos and supervisor shown above. The report body, figures, data and numerical code are preserved. The document recipe includes the logos. Portfolio integration is a separate site update and is not performed by this documentary revision. Local provenance remains private.
+**PDF and publication status.** The [project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark) is public. This author/contact/provenance source edition, prepared on 2026-10-09, was rebuilt and reviewed on 2026-10-10 in a separate compatible TeX Live environment: [report PDF](../../report/main.pdf), 18 pages, and [slide PDF](../../slides/main.pdf), 15 slides. All 33 rendered pages and the accessible decoded PDF contents were inspected. Publication of this revision is pending. The numerical results, four figures, institutional logos and scientific limitations are preserved. No portfolio site is updated.
 
-**Project terminology edition.** The accompanying report and presentation now use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
+**Previous published project terminology edition.** Its report and presentation use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
 
 One optional future extension: assess transfer to another physical case with measured label costs. It remains unexecuted.
+
+**Traceability.** [Figure provenance](../figure_provenance.md), [citation](../../CITATION.cff) and [reproduction guide](../reproducibility.md). Scientific base: [`194561b84e190d953f85d1f01281f0d758907a05`](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/commit/194561b84e190d953f85d1f01281f0d758907a05). The fixed-seed curves illustrate seed 20262001 at 3000, not a twenty-seed average. This documentary check reads saved values and identities only.
+
+**Contact.** Halhoul Mhamed — [halhoul.mhamed@etu.uae.ac.ma](mailto:halhoul.mhamed@etu.uae.ac.ma); [halhoulmhamed@gmail.com](mailto:halhoulmhamed@gmail.com); [project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark).

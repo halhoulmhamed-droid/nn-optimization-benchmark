@@ -4,13 +4,17 @@ This repository contains a scientific copy of the saved thermal benchmark. The o
 
 ## Academic document edition
 
-**Project terminology edition.** The accompanying report and presentation now use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
+**Author/contact edition.** Author: Halhoul Mhamed. Sources prepared on 2026-10-09 were rebuilt and reviewed on 2026-10-10 in a separate compatible TeX Live environment. The revision adds contacts and [figure provenance](figure_provenance.md): 18 physical report pages and 15 slides, all 33 rendered pages inspected. The four figure PDFs are unchanged. No numerical validation or scientific calculation was rerun; publication of this documentary revision is pending.
+
+Scientific code/data base: [`194561b84e190d953f85d1f01281f0d758907a05`](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark/commit/194561b84e190d953f85d1f01281f0d758907a05). It is a provenance base, not the future PDF commit.
+
+**Previous published project terminology edition.** Its report and presentation use Projet scientifique de Master on their covers and in their PDF subjects. Both were rebuilt from their matching LaTeX sources and reviewed in a separate compatible TeX Live environment. No numerical experiment, saved-data analysis or historical test suite was rerun. The Windows document build remains unverified.
 
 The initial-publication numerical validation belongs to commit `8b6851bd9a88cbfd755dc30316b42ee574260fca`. The academic revision adds a separate report cover, redesigns the slides, corrects the supervisor label and university name, and includes the official logos. Only the document-build script input list changes among Python files. All numerical modules, test sources, configuration, saved results and figure files remain identical. The 161 numerical tests have not been rerun for this documentary edition. Because the build script contributes to source_hashes, the earlier ignored test report cannot authorize a future campaign for this revision; run fresh checks in a new reproduction directory before any future numerical campaign or analysis. No such campaign or analysis accompanies this document revision.
 
 ## Read the saved work
 
-Read the [report](../report/main.pdf), its [source](../report/main.tex), the [slides](../slides/main.pdf) and their [source](../slides/main.tex). The report has 17 physical pages, including its separate institutional cover, and the presentation has 14 slides. All six saved PDFs have been checked through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The two principal PDFs were rebuilt for this project terminology edition and their rendered pages were reviewed. The four vector-figure PDFs are identical to the initial-publication edition. The mathematical report body is preserved. The scan does not include OCR of raster pixels or establish how the work was authored.
+Read the [report](../report/main.pdf), its [source](../report/main.tex), the [slides](../slides/main.pdf) and their [source](../slides/main.tex). The report has 18 physical pages, including its separate institutional cover, and the presentation has 15 slides. All six saved PDFs were checked on 2026-10-10 through extracted page text, metadata, bookmarks, annotations, object strings and accessible decoded streams. The two principal PDFs were rebuilt for this author/contact/provenance edition and all 33 rendered pages were reviewed. The four vector-figure PDFs are identical to the scientific-base edition; their embedded plots were inspected in the report and slides. The mathematical report body is preserved. The scan does not include OCR of raster pixels or establish how the work was authored.
 
 From the project root, the first proposed command reads and verifies saved files only:
 
@@ -24,6 +28,10 @@ These public --check modes import only the administrative public_io module. They
 See the [data dictionary](data_dictionary.md), [public recipe](../configs/replication_plan.json), [model states](../results/models/campaign_models.public.json) and [statistical results](../results/analysis/phase3c_analysis.public.json). Distinct field projections must not be confused with unchanged historical archives. The four campaign/statistics CSVs and the presentation CSVs are exact byte copies. scientific_files.json checks identities in this selected copy; it is not a signature or a historical machine-preservation proof.
 
 ## Rebuild the documents
+
+The reviewed author/contact revision rebuilt **only the two main documents** with the existing four figure PDFs and institutional logos. Separate private build directories were used, with report/ and slides/ as the respective working directories, an already available compatible pdfLaTeX engine, -no-shell-escape and the necessary reference passes. All new report pages and slides, decoded text, metadata and links were inspected. Two slide chart display heights were reduced by 1 mm to remove vertical overflow, without modifying figure files. Explicit Beamer title/author fields preserve the PDF metadata. For a future limited rebuild, use this same scope rather than the generic --build recipe below, which also rebuilds the figures.
+
+The [provenance table](figure_provenance.md) separates rendering existing CSVs, checking saved field identities and repeating an experiment. F1 uses seed 20262001 at step 3000. No model, RMSE, decision, correlation or bootstrap was recomputed for this read-only provenance check. The existing public presentation script implements --check only; the original limited illustration export is historical.
 
 The seven editable TeX sources, bibliography and four existing CSVs are included. The report and slide sources carry the current project wording; the four figure sources, bibliography and CSVs are unchanged. The original documentary delivery used a separate compatible TeX Live environment. The former Windows application-control restriction remains historical and unresolved; this recipe neither changes nor bypasses it.
 
@@ -91,3 +99,9 @@ All scripts show help without arguments and run no experiment implicitly. The so
 
 The preceding administrative review executed no research campaign, statistical recomputation, physical oracle, network evaluation or document compilation. The publication-specific CPython 3.11.9 validation did execute the ten-module, 161-test suite, including analytic/derivative checks, physical-reference unit checks and small deterministic or synthetic optimization, continuation, integration and statistical fixtures. No research campaign, saved-result bootstrap, new campaign M0 reference or document compilation was performed. Publication preparation does not update any portfolio. The combined numerical checks are validated on this runtime; portable end-to-end campaign reproduction and numerical reproduction on multiple platforms remain unverified. This NN repository is provided under the [MIT License](../LICENSE).
 
+
+## Author and contact
+
+Halhoul Mhamed — Université Abdelmalek Essaâdi; Faculté Polydisciplinaire de Larache; M2 en cours, Master « Modélisation mathématique et applications et apprentissages »; module « Algorithmes métaheuristiques »; Professeur encadrant : Pr. Jamal Daoudi; année universitaire 2026–2027.
+
+[Institutional email](mailto:halhoul.mhamed@etu.uae.ac.ma): halhoul.mhamed@etu.uae.ac.ma. [Gmail](mailto:halhoulmhamed@gmail.com): halhoulmhamed@gmail.com. [Project repository](https://github.com/halhoulmhamed-droid/nn-optimization-benchmark).

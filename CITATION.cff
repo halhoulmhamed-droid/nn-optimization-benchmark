@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite this scientific Master project using the metadata below."
+type: software
+title: "Approximation neuronale et optimisation d’une décision thermique"
+authors:
+  - family-names: "Halhoul"
+    given-names: "Mhamed"
+    affiliation: "Université Abdelmalek Essaâdi, Faculté Polydisciplinaire de Larache"
+    email: "halhoul.mhamed@etu.uae.ac.ma"
+url: "https://github.com/halhoulmhamed-droid/nn-optimization-benchmark"
+repository-code: "https://github.com/halhoulmhamed-droid/nn-optimization-benchmark"
+license: MIT
